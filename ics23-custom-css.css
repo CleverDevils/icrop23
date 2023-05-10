@@ -1,0 +1,174 @@
+body.poster-sessions .homescreen-content,
+body.crop-hop .homescreen-content,
+body.video-on-demand .homescreen-content {
+    margin-bottom: 50px;
+}
+  
+body.poster-sessions .aa_winners .vod-category {
+    background-image: url('https://assets-private.eventfinity.co/materials/1837201/original/bg-gold-glitter-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 15px 15px 0 0;
+    padding: 30px 25px 40px;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+}
+
+body.poster-sessions .aa_winners .vod-category .session-container {
+    filter: drop-shadow(10px 10px 6px rgba(0,0,0,.8));
+    flex: 0 0 40% !important;
+}
+
+body.poster-sessions .aa_winners .vod-category .session-container h2.session-title {
+    font-size: 18px !important;
+}
+
+body.poster-sessions .aa_winners .vod-category .session-container .speakers-component.video-item-speaker-section {
+    min-height: 80px;
+}
+
+/* ----------- */
+
+body.poster-sessions .vod-category .session-container {
+    flex: 0 0 30% !important;
+}
+
+.session-thumb-container {
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+body.poster-sessions .session-thumb-container {
+    margin-bottom: 0;
+}
+
+body.poster-sessions h2.session-title {
+    font-size: 17px;
+    margin: .5em 10px 0 0 !important;
+}
+
+body.video-on-demand h2.session-title {
+    font-size: 17px;
+    margin: .5em 0 15px 0 !important;
+}
+
+.swiper-slide h2.session-title,
+body.crop-hop h2.session-title {
+    font-size: 17px !important;
+}
+  
+.like-section {
+    flex: 0 0 35px !important;
+}
+
+.like-section * {
+    font-size: 14px !important;
+}
+
+body.video-on-demand p.video-overlay-text {
+    font-size: 17px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.swiper-slide .video-title-section {
+    align-items: flex-start !important;
+}
+
+body.crop-hop .vod-category-wrapper {
+    margin-bottom: 35px;
+}
+
+body.crop-hop .vod-category,
+body.video-on-demand .vod-category,
+body.libraries398818 .swiper-container {
+    padding-top: 20px;
+}
+
+/* ----------- */
+
+div#global-chat-7617-active-chat-list {
+    max-height: 500px;
+}
+
+
+.vod-category[data-v-2ce3ac62] {
+       justify-content: space-evenly !important;
+}
+
+.video-on-demand .thumbnail-container {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+
+/* POSTER TITLE MOBILE FIX TS */
+
+.embed-title-wrapper[data-v-e3b32178], .embed-title-wrapper[data-v-0b61c89f] {
+    height: 110px !important;
+}
+
+
+@media only screen and (max-width: 1600px) {
+  .embed-title-wrapper[data-v-e3b32178], .embed-title-wrapper[data-v-0b61c89f]  {
+        height: 130px !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .embed-title-wrapper[data-v-e3b32178], .embed-title-wrapper[data-v-0b61c89f]  {
+        height: 170px !important;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .embed-title-wrapper[data-v-e3b32178], .embed-title-wrapper[data-v-0b61c89f]  {
+        height: 200px !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+    .embed-title-wrapper[data-v-e3b32178], .embed-title-wrapper[data-v-0b61c89f]  {
+         height: 300px !important;
+    }
+
+    h1#player-title-text {
+        font-size: 21px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    body.poster-sessions .aa_winners .vod-category {
+        padding: 30px 40px 40px 30px;
+    }
+
+    body.poster-sessions .vod-category .session-container {
+        flex: 0 0 100% !important;
+    }
+
+    body.poster-sessions .aa_winners .vod-category .session-container {
+        flex: 0 0 90% !important;
+    }
+
+    body.poster-sessions h2.session-title {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .vod-category .session-container {
+        flex: 1 0 100% !important;
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .vod-category .session-container {
+        flex: 1 0 40% !important;
+    }
+
+    body.poster-sessions .vod-category .session-container {
+        flex: 1 0 45% !important;
+    }
+}

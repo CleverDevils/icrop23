@@ -1,0 +1,3261 @@
+/*@import url("https://dl.dropbox.com/s/84limldmrgj4ieq/icrop-bayer.css");
+
+@import url("https://dl.dropbox.com/s/sshpnk75wsrznoz/conductor.css");*/
+
+
+/* fonts */
+
+@font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760611/original/HelveticaNeue-Thin.ttf);
+    font-weight: 100;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760601/original/HelveticaNeue-Light.ttf);
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760531/original/HelveticaNeue.ttf);
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760631/original/HelveticaNeue-Bold.ttf);
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760551/original/HelveticaNeue-BoldItalic.ttf);
+    font-weight: bold;
+    font-style: italic;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760621/original/HelveticaNeue-Medium.ttf);
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: "Neue Helvetica";
+    src: url(https://assets-private.eventfinity.co/materials/1760641/original/HelveticaNeue-Italic.ttf);
+    font-weight: 400;
+    font-style: italic;
+  }
+  :root {
+    --theme-font-family-body-copy: "Neue Helvetica";
+    --bayer-dark-blue: #0f2d44;
+    --bayer-bright-blue: #52b8e9;
+    --bayer-mid-blue: #307299;
+    --bayer-dark-green: #153429;
+    --bayer-dark-purple: #431f36;
+    --bayer-mid-purple: #81546d;
+    --bayer-green: #8db844;
+    --bayer-mid-green: #2b6636;
+    --bayer-bright-green: #b5c841;
+    --bayer-fuchsia: #ff3162;
+    --bayer-nav-text-color: #0075a6;
+    --desktop-header-height: 70px;
+    --header-bg-color: var(--bayer-dark-blue);
+    --theme-navigation-active-text-color: var(--bayer-fuchsia);
+    --theme-link-color: var(--bayer-nav-text-color);
+    --hs-sidenav-width: 250px;
+  
+    /* Agenda Background Colors */
+    --abc-1: #00bcff;
+    --abc-2: #66b512;
+    --abc-3: #624963;
+    --abc-4: #10384f;
+    --abc-5: #ff3162;
+    --abc-6: #89d329;
+    --abc-7: #443247;
+    --abc-8: #0091df;
+    --abc-9: #004422;
+    --abc-10: #d30f4b;
+    --abc-11: #00617f;
+    --abc-12: #2b6636;
+  
+    /* --event-: "Neue Helvetica"; */
+  }
+  
+  /* #region ---- CUSTOM SECTION TITLE ---- */
+  
+  .agenda__item-content {
+    background-color: transparent;
+  }
+  
+  body.grouped-agenda #schedule-item-time {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title #schedule-item-time {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-container.card {
+    margin: 0;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-date {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-locations {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-bookmark-toggle {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title
+    .agenda__item-action-button.agenda__item-vmeet-link {
+    display: none;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-tags {
+    display: none;
+  }
+  .agenda__item-tag-section_title .agenda__item-container.card {
+    border: 0;
+    background-color: transparent;
+  }
+  .agenda__item-tag-section_title .agenda__item-content {
+    border: 0;
+    background-color: transparent;
+  }
+  
+  .agenda__item-detail-title {
+    flex-basis: 70%;
+  }
+  
+  .agenda__item-detail-title-text {
+    font-size: 22px !important;
+    font-weight: bold;
+  }
+  
+  .agenda__item-tag-section_title .agenda__item-container.card {
+    font-size: 22px;
+  }
+  
+  /* #region ---- CUSTOM SECTION TITLE ---- */
+  
+  /* #region ---- GENERAL SESISON ----- */
+  div#pop-out-link-wrapper {
+    display: none;
+  }
+  
+  div#main-stage-left-column {
+    display: none;
+  }
+  div#main-stage-nav {
+    opacity: 0;
+  }
+  div#main-stage-nav.show {
+    opacity: 1 !important;
+  }
+  /*
+  body.main-stage3034 .zsiq_floatmain {
+    display: none !important;
+  }
+  */
+  
+  /* TAS GS PAGE CHAT */
+  .ISC-Chat
+    .global-chat.global-chat_fixed-right.global-chat_collapse-animated.global-chat_collapsed {
+    position: relative !important;
+    left: 20px !important;
+    right: 0px !important;
+    width: 73% !important;
+    display: block !important;
+    max-width: 1195px !important;
+    top: -140px !important;
+  }
+  
+  @media (max-width: 1250px) {
+    .ISC-Chat
+      .global-chat.global-chat_fixed-right.global-chat_collapse-animated.global-chat_collapsed {
+      left: 60px !important;
+      width: 60% !important;
+      top: -110px !important;
+    }
+  }
+  
+  @media (max-width: 990px) {
+    .ISC-Chat
+      .global-chat.global-chat_fixed-right.global-chat_collapse-animated.global-chat_collapsed {
+      left: 20px !important;
+      width: 46% !important;
+      top: 630px !important;
+    }
+  
+    .TestSlidoFrame.col-lg-3.slido-enabled {
+      min-height: 600px;
+    }
+  
+    .TestStreamWrapper {
+      padding-bottom: 300px !important;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .ISC-Chat
+      .global-chat.global-chat_fixed-right.global-chat_collapse-animated.global-chat_collapsed {
+      left: 20px !important;
+      width: 90% !important;
+      top: 580px !important;
+    }
+  
+    .form-group.login-card__form-group:last-of-type {
+      width: 100% !important;
+      float: none !important;
+      left: 15px !important;
+      position: relative !important;
+  }
+  
+  div#how-to-btn-wrapper {
+      width: 100% !important;
+      float: none !important;
+  }
+  
+  
+  }
+  
+  .global-chat__toggle,
+  .global-chat-list .global-chat__back-button,
+  .global-chat-active .fa-times {
+    display: none !important;
+  }
+  
+  .main-stage main {
+    height: 100vh;
+    position: relative;
+  }
+  
+  #attendeeWeb .main-stage__iframe iframe {
+    height: 99% !important;
+  }
+  
+  .main-stage main.flex-shrink-0 {
+    background-color: var(--bayer-dark-blue);
+  }
+  /*
+  #bg-img-holder {
+    position: fixed !important;
+    background-position: center;
+    margin-left: var(--hs-sidenav-width);
+  }
+  */
+  
+  .main-stage.main-stage3034 #bg-img-holder {
+    background-color: black;
+  
+    background-image: url("https://assets-private.eventfinity.co/materials/1760901/original/Field-Background-3.png"),
+      url("https://assets-private.eventfinity.co/materials/1760911/original/Field-Background-1.jpg") !important;
+    background-position: bottom left, center;
+    background-size: auto, cover !important;
+    background-repeat: no-repeat;
+    margin-left: var(--hs-sidenav-width);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    opacity: 1;
+  }
+  
+  /* #endregion */
+  
+  /* #region --- HEADER ----- */
+  .hsblocks-container.nav-side .navbar-logo__desktop img {
+    height: var(--desktop-header-height);
+  }
+  
+  .navbar-brand.clickable.navbar-logo__desktop {
+    background-color: var(--header-bg-color);
+  }
+  
+  #attendeeWeb .plugin__header {
+    height: var(--desktop-header-height) !important;
+    background-color: var(--bayer-dark-blue) !important;
+  }
+  
+  /* TS BEGIN LEADING IN-NOVATION TEXT */
+  #attendeeWeb .plugin__header:after {
+    content: "Leading IN-novation";
+    position: absolute;
+    right: 50%;
+    color: #ffffff;
+    bottom: 20px;
+    font-size: 24px;
+  }
+  
+  @media (max-width: 1200px) {
+    #attendeeWeb .plugin__header:after {
+      right: 70%;
+      font-size: 19px;
+    }
+  }
+  
+  @media (max-width: 676px) {
+    #attendeeWeb .plugin__header:after {
+      display: none;
+    }
+  }
+  
+  /* BEGIN LEADING IN-NOVATION TEXT */
+  
+  #attendeeWeb .plugin__header div {
+    padding: unset !important;
+  }
+  #custom-header-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  #custom-header-content img {
+    width: auto;
+    height: 150%;
+  }
+  
+  .plugin__header.col-12 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding-right: 0;
+  }
+  
+  .triangle-bottomright {
+    width: 0;
+    height: 0;
+    border-bottom: var(--desktop-header-height) solid white;
+    border-left: 25px solid transparent;
+  }
+  
+  .hsblocks-container.nav-side .navbar-logo__desktop img {
+    max-width: 100%;
+    max-height: 140px;
+    padding: 0 !important;
+    margin: 0px;
+  }
+  
+  /* #endregion */
+  
+  /* #region -- agenda -- */
+  
+  .detail-desc-container {
+    white-space: pre-line;
+  }
+  .agenda-detail-plugin-item h4.agenda-detail__header.plugin__header-text {
+    display: none;
+  }
+  
+  .plugin-link a {
+    color: var(--theme-secondary-text-color);
+    font-weight: 700;
+    border: 1px solid var(--theme-secondary-color);
+    background-color: var(--theme-secondary-color);
+    color: var(--theme-secondary-text-color);
+    font-size: var(--theme-font-family-body-copy);
+    border-radius: 0;
+    transition: transform 0.3s ease, all 0.4s ease;
+  }
+  .plugin-link a:not(:disabled):not(.disabled) {
+    cursor: pointer;
+  }
+  
+  .schedule .agenda__item-detail-title-text p {
+    display: none;
+  }
+  .schedule .agenda-detail__location {
+    display: none;
+  }
+  .agenda__title.plugin__title,
+  .col-12.plugin__fixed,
+  .directory-page__title.plugin__title {
+    background-color: #fff !important;
+  }
+  
+  .library__title.plugin__title,
+  .agenda__title-text,
+  .directory-name {
+    font-size: 31px;
+    background-color: #fff;
+  }
+  
+  .agenda__items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .agenda__items .agenda__item-speakers {
+    display: none;
+  }
+  .agenda__item-image-wrapper {
+    display: none;
+  }
+  
+  .agenda__item-detail {
+    flex: 1 0 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 15px 20px 18px;
+    gap: 10px;
+  }
+  
+  .agenda__item-tag-section_title {
+    flex: 1 0 100% !important;
+    padding-bottom: 1em !important;
+  }
+  .agenda__item-calendar-links-button {
+    color: #000;
+  }
+  .agenda__item-content {
+    height: 100%;
+  }
+  
+  .agenda__item-row,
+  .agenda__item-tag-mini-sym-parent,
+  .agenda__item-tag-global,
+  .agenda__item-tag-break,
+  .agenda__item-tag-full-width {
+    flex: 1 0 100%;
+  }
+  .agenda__item-locations {
+    display: none;
+  }
+  .grouped-agenda .agenda__item-tag-mini-sim-child {
+    flex: 0 0 30%;
+    padding-bottom: 0;
+  }
+  .order-by-start .agenda__item-row {
+    flex: 1 0 100%;
+  }
+  .grouped-agenda .agenda__item-tag-mini-sim-child .agenda__item-tags {
+    display: none;
+  }
+  .grouped-agenda .agenda__item-tag-mini-sim-child .agenda__item-time {
+    display: none;
+  }
+  
+  .agenda__item-time {
+    min-width: 140px;
+  }
+  
+  .agenda__item-container,
+  .agenda__item-container:hover {
+    background: transparent !important;
+    border: none;
+  }
+  
+  #detail-page-link {
+    text-decoration: none;
+  }
+  
+  #agenda__filter-dropdown-menu {
+    z-index: 1000;
+  }
+  
+  .agenda__item-speakers {
+    padding-top: 0;
+  }
+  
+  .agenda__item-speaker-item {
+    margin: 0 0 5px 0;
+  }
+  
+  .agenda__item-start-end-time {
+    font-weight: 700;
+    font-size: 14px;
+  }
+  
+  .agenda-detail .agenda-detail__description {
+    margin: 10px auto;
+    padding-right: 40px;
+  }
+  
+  /* reducing whitespace */
+  
+  /* Inline #59 | https://ics2022.eventfinity.co/schedule/0 */
+  
+  .order-by-start .agenda__item-detail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-grow: 0;
+  }
+  
+  .order-by-start #detail-page-link.agenda__item-detail-title-text {
+    font-size: 20px;
+  }
+  
+  .order-by-start .agenda__item-detail-title-container {
+    flex: 1 0 100%;
+    order: 0;
+  }
+  .agenda__item-detail-title {
+    flex: 0 0 70%;
+  }
+  
+  /* TS BOOKMARK FIX */
+  .fa-bookmark {
+    cursor: pointer;
+  }
+  
+  .agenda-block-bookmarked i:before {
+    content: "\2713" !important;
+  }
+  
+  .agenda-block-bookmarked {
+    background: white;
+    border: 1px solid var(--bayer-green);
+  }
+  
+  .agenda-block-bookmarked i {
+    color: var(--bayer-green);
+  }
+  
+  .agenda__item-bookmark-toggle {
+    flex: 1;
+  }
+  
+  /*
+  .order-by-start .agenda__item-calendar-links {
+  }
+  */
+  
+  .order-by-start .agenda__item-date {
+    flex: 0 0 100%;
+    order: 1;
+  }
+  .order-by-start .agenda__item-speakers {
+    order: 2;
+    flex: 0 0 100%;
+  }
+  .order-by-start .agenda__item-description {
+    font-size: 16px;
+    order: 2;
+  }
+  .order-by-start .agenda__item-calendar-links {
+    order: 3;
+    flex-basis: 50%;
+    text-align: left;
+  }
+  
+  .order-by-start .agenda__item-actions {
+    order: 4;
+    align-self: flex-start;
+    margin-left: auto;
+  }
+  
+  /*
+  .agenda__item-tag-break .agenda__item-detail-page-link,
+  .agenda__item-tag-break .agenda__item-detail-page-link .agenda__item-icon,
+  .agenda__item-tag-break .agenda__item-detail-title-text,
+  .agenda__item-tag-break s .agenda__item-detail-page-link-text,
+  .agenda__item-tag-break .agenda__item-start-end-time-container,
+  .agenda__item-tag-break .agenda__item-location-name,
+  .agenda__item-tag-break
+    .agenda__item-detail
+    .agenda__item-start-end-time-container
+    * {
+    color: #fff !important;
+  }
+  */
+  
+  .hsblocks-container #navbarCollapse li.nav-section-title a i.title-icon {
+    right: 45px !important;
+  }
+  
+  .agenda__item-tag-break .agenda__item-calendar-links-button,
+  .agenda__item-tag-break .agenda__item-bookmark-toggle,
+  .agenda__item-tag-break .agenda__item-location-items,
+  .agenda__item-tag-break .agenda__item-actions {
+    display: none;
+  }
+  
+  .schedule707 #agenda-title {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  #agenda-title.show {
+    opacity: 1;
+  }
+  
+  .agenda__item-detail-title-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .agenda__item-detail-page {
+    align-self: unset;
+  }
+  
+  body.grouped-agenda .agenda__items {
+    gap: 30px 25px;
+  }
+  
+  body.grouped-agenda .agenda__item-row {
+    padding-bottom: 0;
+  }
+  
+  body.grouped-agenda .agenda__item-container {
+    margin-left: 0;
+  }
+  
+  body.grouped-agenda .agenda__item-tag-mini-sim-child {
+    flex: 1 0 30%;
+  }
+  
+  body.grouped-agenda .card {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  /*Trent attempts to shorten filter dropdown and make scrollable*/
+  #agenda__filter-dropdown-menu {
+    max-height: 80vh;
+    overflow: scroll !important;
+    background: #0f2d44 !important;
+  }
+  
+  #agenda-homescreen-list
+    > div.row.plugin__nav
+    > div.col-12.plugin__fixed
+    > div.agenda__title.plugin__title
+    > div.col-xs-12.agenda__search-container.col-md-6
+    > div.input-group-btn.desktop.jump-to-next.agenda__jump-to-next {
+    display: none;
+  }
+  
+  
+  /* TS AGENDA FIXES */
+  .agenda__filter-dropdown-menu {
+    top: 65px;
+  }
+  
+  .agenda__day-menu {
+    padding: 0 var(--plugin-content-padding);
+  }
+  
+  .agenda__tab-content {
+    min-height: 800px;
+  }
+  
+  #agenda__filter-dropdown-menu div label {
+    color: white;
+    font-size: 16px;
+    vertical-align: text-top;
+    cursor: pointer;
+    padding-left: 5px;
+  }
+  
+  #agenda__filter-dropdown-menu .form-check {
+    line-height: 22px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #ffffff40;
+    padding-top: 4px;
+    padding-left: 25px;
+  }
+  
+  #agenda__filter-dropdown-menu div input {
+    cursor: pointer;
+  }
+  
+  /* directory */
+  .directories a.speakerAddToCal {
+    display: none;
+  }
+  .directory-schedule-container.col-xs-12.text-center {
+    display: none;
+  }
+  .abstract-section-title::after,
+  .author-section-title::after,
+  .speaker-section-title::after {
+    display: none !important;
+  }
+  /* TS SEARCH ARROW FIX */
+  .agenda__search-arrow,
+  .directory-search-container__search-arrow {
+    color: #ffffff !important;
+  }
+  
+  /*Trent attempts to shorten filter dropdown and make scrollable*/
+  #agenda__filter-dropdown-menu {
+    max-height: 80vh;
+    overflow: scroll !important;
+  }
+  .jump-to-next.agenda__jump-to-next {
+    display: none;
+  }
+  .HideonFE {
+    display: none;
+  }
+  .schedule-item-row-1456194 ol {
+    display: none;
+  }
+  
+  body.event #homescreen_content .hs-block .hs-agenda-block {
+    overflow: hidden;
+    margin-bottom: 5px;
+  }
+  
+  body.event .agenda__item-tag-hide-me-plz {
+  display: none !important;
+  }
+  
+  body.event .plugin__header-text::after {
+    background-color: transparent !important;
+  }
+  
+  body.event #how-to-btn-wrapper {
+    margin-bottom: 50px !important;
+  }
+  
+  
+  
+  /*endregion Trent Breaks stuff*/
+  
+  /* #endregion -- agenda --  */
+  
+  /* #region --- navigation --- */
+  :root {
+    --nav-left-right-margin: 2em;
+    --theme-navigation-active-bg-color: unset;
+  }
+  .nav-item.navbar__list-item.active span {
+    font-weight: bold;
+    color: var(--bayer-nav-text-color);
+  }
+  .hsblocks-container #nav-side-navigation li,
+  /* .hsblocks-container #nav-side-navigation-items, */
+  .hsblocks-container #nav-side-navigation-settings,
+  .hsblocks-container #nav-top-navigation-items {
+    width: calc(100% - var(--nav-left-right-margin) * 2);
+  }
+  
+  #nav-side-navigation-items > li.nav-item.navbar__list-item.nav-id-569692.notifications-nav > a > i{
+  display:none;
+  }
+  
+  #nav-side-navigation-items > li.nav-item.navbar__list-item.nav-id-569692.notifications-nav > a > span.notifications-count-badge.themePrimaryColorBackground.badge.badge-danger.badge-pill.ml-4.notifications-nav__count{
+  color:white;
+  }
+  
+  /* TS NAV COLOR FIX */
+  .settings-side-nav-title ul li a span:hover,
+  .settings-side-nav-title ul li:hover a span,
+  .settings-side-nav-title .nav-item.navbar__list-item.active span {
+    color: white !important;
+    transition: none !important;
+    font-weight: bold !important;
+  }
+  
+  @media (max-width: 888px) {
+    /* TS MOBILE FAQ WDITH FIX */
+    .faq-container {
+      width: 90vw !important;
+      margin: 0 auto;
+    }
+  
+    /* TS MOBILE AGENDA OVELAP FIX */
+    .nav-side .plugin__title {
+      height: auto !important;
+    }
+  }
+  
+  /* TS SUPPORT SECTION FIX */
+  .nav-stacked {
+    width: 87% !important;
+    background-color: #0f2d44;
+  }
+  
+  .nav-stacked span,
+  .nav-stacked i {
+    color: #ffffff;
+  }
+  
+  .nav-stacked i {
+    right: 10px;
+    position: relative;
+  }
+  
+  .hsblocks-container
+    #nav-side-navigation
+    .nav-section-title.settings-side-nav-title {
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+  
+  .hsblocks-container #nav-side-navigation ul.submenu li {
+    width: 100% !important;
+  }
+  
+  #nav-side-navigation-settings .nav-link.navbar__list-item-link i {
+    display: none;
+  }
+  
+  /* make the nav smaller on smaller screens */
+  @media (max-width: 1399.98px) {
+    :root {
+      --hs-sidenav-width: 250px;
+    }
+  }
+  @media (max-width: 1199.98px) {
+    :root {
+      --hs-sidenav-width: 200px;
+    }
+  }
+  
+  /* faq video */
+  div#how-to-video-embed {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+  }
+  
+  /* remove home icon */
+  .nav-icon.navbar__icon.far.fa-home {
+    display: none !important;
+  }
+  
+  ul:not(.submenu) > .nav-item.navbar__list-item,
+  ul:not(.submenu) > .settings-side-nav-title {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+  .toggle-btn.navbar__nav-section-title-link {
+    padding: 0;
+  }
+  
+  /* active nav */
+  /* .active .nav-link.navbar__list-item-link {
+    background-color: unset !important;
+    border-left: none;
+  } */
+  /* hover over item */
+  .navbar__list-item .navbar__list-item-link:hover,
+  .navbar__dropdown-menu.show .navbar__list-item.active,
+  .navbar__list-item.active .navbar__list-item-link,
+  .navbar__dropdown-submenu:hover .navbar__dropdown-submenu-link {
+    border-left: none !important;
+    background: transparent !important;
+  }
+  
+  .nav-link.navbar__list-item-link {
+    /* border-bottom: 1px solid #e1e1e1; */
+    padding-left: 0 !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    transition: all 0.3s;
+    border-left: none !important;
+  }
+  .nav-text.navbar__list-item-text {
+    transition: all 0.3s !important;
+  }
+  .nav-item.navbar__list-item.active .nav-text {
+    margin-left: 0.3em;
+  }
+  .nav-item.navbar__list-item {
+    border-bottom: 1px solid #e6e6e6;
+  }
+  
+  .nav-section-title.navbar__nav-section-title {
+    display: none;
+  }
+  
+  /* #endregion */
+  
+  /* #region --- homepage --- */
+  
+  body.modal-open .modal-dialog {
+    margin-top: 13vh;
+  }
+  
+  /* homepage agenda */
+  
+  /* Inline #55 | https://ics2022.eventfinity.co/event */
+  
+  .hsa-card.agenda__item-tag-break,
+  .hsa-card.agenda__item-tag-section_title,
+  /* .hsa-card.agenda__item-tag-mini-sim, */
+  .hsa-card.agenda__item-tag-latam-na {
+    display: none !important;
+  }
+  
+  .hsa-card__buttons-container {
+    display: none;
+  }
+  .hsa-cards-container {
+    flex-direction: column;
+  }
+  
+  .hsa-cards-container .hsa-card {
+    flex-direction: row;
+    /* display: flex; */
+    flex: 1 0 100%;
+    max-width: unset;
+    height: 200px;
+    min-height: unset;
+    border-bottom: 2px solid #0000000f;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  .agenda-top {
+    flex: 0 0 30%;
+  }
+  
+  .hsa-card__content {
+    flex: 1 0 70%;
+    background-color: unset;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding-top: 0;
+    padding-left: 3em;
+    padding-right: 0;
+  }
+  
+  .hsa-card__image {
+    /* height: 245px; */
+    height: 100%;
+  }
+  
+  .hsa-card {
+    border: none;
+  }
+  
+  .hsa-card__title {
+    margin-top: 0;
+    color: var(--bayer-dark-blue);
+    font-size: 22px;
+  }
+  
+  /* TS FIX HEADER TEXTS THAT WERE LIGHT BLUE */
+  .nav-side .plugin__title {
+    height: var(--desktop-header-height);
+    color: var(--theme-text-color);
+    font-size: 31px;
+    background: #ffffff;
+  }
+  
+  .agenda__search-container,
+  .col-md-5.directory-src.text-right.d-flex.align-content-center.pl-0.pr-0 {
+    font-size: initial !important;
+  }
+  div#custom-mini-sym-switch {
+    width: unset !important;
+  }
+  
+  .agenda-at-a-glance-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bayer-green);
+    padding: 0.6em;
+    border-radius: 0.5em;
+    margin-right: 1em;
+    transition: all 0.4s;
+  }
+  .agenda-at-a-glance-wrapper:hover {
+    background-color: var(--bayer-bright-green);
+    transform: scale(101%);
+  }
+  
+  .agenda-at-a-glance:hover {
+    text-decoration: none !important;
+  }
+  
+  h4.full-agenda-title {
+    margin: 0;
+    border: 0;
+    color: #ffffff !important;
+  }
+  
+  /* Inline #55 | https://ics2022.eventfinity.co/event */
+  
+  .hs-agenda-block__title.plugin__header-text,
+  #featured-title-header {
+    font-size: 32px;
+    font-family: var(--theme-font-family-body-copy);
+    font-weight: bold;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .hsa-card__title #d {
+    font-weight: normal;
+  }
+  .hs-agenda-block__title.plugin__header-text {
+    margin-bottom: 0;
+  }
+  .hs-subtitle.hs-agenda-block__subtitle {
+    display: none;
+  }
+  .hs-title {
+    padding-top: 0px;
+  }
+  
+  #block10158 .plugin__header-text::after {
+    visibility: hidden;
+  }
+  .event #homescreen_content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  /* TS HOME PAGE MOBILE FIX */
+  @media (max-width: 888px) {
+    .event #homescreen_content {
+      flex-direction: column;
+    }
+  
+    .hsa-cards-container .hsa-card {
+      flex-direction: column;
+      margin: 0px;
+    }
+  
+    .agenda-top {
+      padding-bottom: 20px !important;
+    }
+  }
+  
+  .col-xs-12.hs-agenda-block.js-hs-agenda-block.hs-agenda-block-10158,
+  .col-xs-12.htmlblock.hs-html-block {
+    padding-top: 0;
+  }
+  
+  #block10158 {
+    flex: 1 0 60%;
+  }
+  
+  #block10159 {
+    flex: 0 0 40%;
+  }
+  .hp-ag-desc {
+    white-space: pre-wrap;
+    margin-top: 1em;
+  }
+  
+  .hsa-card__info {
+    color: var(--bayer-green);
+    font-size: 17px;
+  }
+  
+  /* #endregion */
+  
+  .read-more-wrapper,
+  .show-more-section {
+    position: relative;
+    margin-top: 0.5em;
+  }
+  
+  .read-more-wrapper::before,
+  .show-more-section::before {
+    content: " 1";
+    color: #00800000;
+    transform: rotateZ(20deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    font-weight: bold;
+    border-left: 2px solid var(--bayer-green);
+    left: 0;
+  }
+  
+  .read-more-text,
+  .show-more-a-tag {
+    padding: 0.3em 1em;
+    display: inline-block;
+    font-style: italic;
+    text-transform: uppercase;
+    color: var(--bayer-green);
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  .show-more-a-tag {
+    padding: 0.3em 0.1em;
+  }
+  .read-more-wrapper:hover *,
+  .show-more-section:hover * {
+    color: var(--bayer-fuchsia) !important;
+  }
+  
+  /* #region --- mini sim iframe */
+  
+  /* Inline #55 | https://ics2022.eventfinity.co/schedule/708?minisim=true */
+  
+  .in-iframe .row.plugin__nav {
+    display: none;
+  }
+  
+  .in-iframe .header {
+    display: none !important;
+  }
+  
+  .mini-sim-iframe.logged-in main,
+  .mini-sim-iframe.logged-in #footer-content {
+    padding-left: 0 !important;
+  }
+  
+  .mini-sim-iframe #schedule-item-time {
+    display: none;
+  }
+  
+  .mini-sim-iframe .agenda__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .in-iframe.nav-side .agenda__content.plugin__content,
+  .in-iframe.nav-side .agenda__content.plugin__content.fixed {
+    padding-top: 0 !important;
+  }
+  
+  .mini-sim-iframe .agenda-detail__title.plugin__title {
+    display: none;
+  }
+  #mini-sym-iframe {
+    border: none;
+  }
+  .agenda__item-tags {
+    display: none;
+  }
+  
+  /* #endregion */
+  
+  /* #region -- poster sessions --- */
+  
+  .swiper-slide {
+    height: auto !important;
+  }
+  
+  .caro-item-bg.default-bg-color {
+    background-color: #0f2d44 !important;
+  }
+  
+  .caro-caption .speaker-section-title,
+  .caro-text-region .speaker-section-title {
+    color: #fff !important;
+  }
+  
+  .caro-text-region .speaker-section-title {
+    font-weight: 400 !important;
+  }
+  
+  .speakers-component.video-item-speaker-section
+    div[class*="section-title"]::after {
+    display: none;
+  }
+  
+  .caro-title-section {
+    text-align: center;
+  }
+  
+  .caro-text-title {
+    font-size: 18px;
+  }
+  
+  .session-thumb-container {
+    background-color: #0f2d44;
+  }
+  
+  .session-title {
+    color: #fff !important;
+  }
+  
+  .like-section {
+    color: #fff !important;
+  }
+  .session-description {
+    font-size: 1.3em;
+  }
+  .show-more-section {
+    padding-bottom: 0 !important;
+    margin-left: 1em;
+  }
+  .single-vod-item {
+    padding-bottom: 8px;
+    height: 100%;
+  }
+  
+  #assets-component {
+    margin-bottom: 1em;
+  }
+  
+  .caro-text-title {
+    color: #fff;
+  }
+  
+  #video-player-component .like-section {
+    color: #000 !important;
+  }
+  
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  div#assets-component {
+    background-color: var(--bayer-green);
+    color: #000;
+  }
+  .asset-items-wrapper * {
+    color: #000;
+  }
+  div#assets-component {
+    padding: 0.5em 1em;
+  }
+  a.single-asset *:hover,
+  a.single-asset {
+    color: #fff;
+  }
+  
+  .poster-sessions .caro-text-short-desc {
+    display: none;
+  }
+  .poster-sessions .video-description-wrapper {
+    display: none;
+  }
+  .poster-sessions .caro-text-title {
+    color: #fff;
+    font-size: 28px;
+  }
+  .poster-sessions .caro-text-region {
+    padding: 0 50px 35px 50px !important;
+  }
+  
+  .poster-sessions .thumbnail-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .poster-sessions .session-title {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+  }
+  .poster-sessions .thumbnail-container {
+    height: 250px !important;
+  }
+  .poster-sessions span.caro-title-id,
+  .poster-sessions .session-title-id {
+    margin-right: 0.2em;
+  }
+  .poster-sessions.nav-side .plugin__fixed.fixed,
+  .crop-hop.nav-side .plugin__fixed.fixed {
+    z-index: 1000000;
+  }
+  
+  .vod-category {
+    justify-content: flex-start !important;
+    gap: 40px 25px;
+    padding-top: 40px;
+  }
+  
+  .vod-category .session-container {
+    margin: 0 !important;
+    flex: 0 0 30% !important;
+  }
+  
+  body.libraries398838 #player-title-text {
+    margin: 0 !important;
+  }
+  
+  #video-player-component .embed-container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  
+  .embed-title-wrapper {
+    background-position: center center;
+  }
+  
+  
+  .caro-item-bg.has-bg-color {
+    height: 300px !important;
+  }
+  
+  /* TS VOD PAGE FIXES */
+  
+  @media only screen and (min-device-width: 900px) {
+    #vod-app {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 85%;
+    }
+  }
+  
+  @media (max-width: 888px) {
+    #filter-section {
+      display: block !important;
+      text-align: center;
+    }
+  
+    #vod-app {
+      width: 100%;
+    }
+  
+    #alpha-select {
+      display: block !important;
+    }
+  
+    #vod-caro {
+      margin-top: 50px;
+    }
+  
+    label.single-alpha-letter {
+      padding: 10px !important;
+    }
+  }
+  
+  span.single-asset-div {
+    display: block;
+  }
+  
+  #vod-description {
+    padding-top: 20px !important;
+  }
+  
+  #comment-section textarea {
+    margin-bottom: 20px !important;
+  }
+  
+  #comment-form-btns button {
+    margin-left: 10px;
+  }
+  
+  #comment-dropdown ul li a.active {
+    background: #0f2d44;
+    font-weight: bold;
+    color: white !important;
+  }
+  
+  #comment-dropdown ul li a:hover {
+    background: #0f2d44;
+    color: white !important;
+  }
+  
+  #comment-dropdown ul li a {
+    color: black;
+  }
+  
+  #comment-dropdown ul.dropdown-menu.show {
+    padding: 0px;
+  }
+  
+  #filter-section a span {
+    cursor: pointer !important;
+  }
+  
+  .single-alpha-select.active .single-alpha-letter[data-v-2ae71775],
+  .single-tag-a.active .single-tag[data-v-2ae71775] {
+    background: #0f2d44 !important;
+    font-weight: bold;
+  }
+  
+  #comm-form-cancel:hover {
+    background: #0f2d44 !important;
+  }
+  
+  /* TS MOBILE POSTER FIX */
+  @media (max-width: 1100px) {
+    .vod-category .session-container {
+      flex: 1 0 30% !important;
+    }
+  }
+  #vod-list-component div[class*="section-title"].speaker-section-title {
+    color: #fff !important;
+  }
+  
+  body.crop-hop #vod-app .speaker-section-title {
+    color: #000 !important;
+  }
+  
+  .poster-sessions .speaker-section-title * {
+    color: #fff !important;
+  }
+  .poster-sessions p.session-description {
+    display: none;
+  }
+  .poster-sessions .video-description-wrapper {
+    display: unset !important;
+  }
+  .poster-sessions a.single-speaker {
+    color: #fff;
+  }
+  .poster-sessions
+    .session-container
+    .speakers-component.video-item-speaker-section {
+    background-color: var(--bayer-dark-blue);
+  }
+  
+  .poster-sessions div#vod-description {
+    display: flex;
+    flex-direction: column;
+  }
+  .poster-sessions div#assets-component {
+    order: 0;
+  }
+  .poster-sessions .speakers-component {
+    order: 1;
+  }
+  .poster-sessions .description-wrapper {
+    order: 2;
+  }
+  h1#player-title-text {
+    color: #fff;
+    padding: 0.75em;
+  }
+  .embed-title-wrapper-inner {
+    background-color: #00000091;
+  }
+  .description-wrapper p {
+    white-space: pre-line;
+  }
+  
+  .speakers-component {
+    display: flex;
+    flex-direction: column;
+  }
+  a.single-speaker[href="/directories/87001/attendee/357650757?from=/libraries/398818"] {
+    order: 2;
+  }
+  #video-player-component .single-speaker-div,
+  #video-player-component
+    div[class*="section-title"].speaker-section-title
+    #video-player-component
+    div[class*="section-title"].abstract-section-title
+    #video-player-component
+    div[class*="section-title"].author-section-title {
+    color: #000 !important;
+  }
+  
+  /* #endregion -- poster sessions --- */
+  
+  /* #region -- crop hop & VOD ---- */
+  .crop-hop .like-section,
+  .crop-hop .session-title,
+  .video-on-demand .session-title,
+  .video-on-demand .like-section {
+    color: #000 !important;
+  }
+  .crop-hop .video-title-section,
+  .video-on-demand .video-title-section {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+    .video-on-demand div#tag-component {
+    display: none;
+    }
+  span.asset-section-title {
+    font-weight: bold;
+  }
+  .back-button.text-left {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .session-title {
+    margin: .5em 0 .3em 0 !important;
+  }
+  
+  /* VideoOnDemand_v1.0.css | https://assets-private.eventfinity.co/materials/1806241/original/VideoOnDemand_v1.0.css */
+  
+  body.libraries398818 .swiper-button-next,
+  body.libraries398818 .swiper-container-rtl .swiper-button-prev {
+    right: 0px;
+  }
+  
+  body.libraries398818 .swiper-button-prev,
+  body.libraries398818 .swiper-container-rtl .swiper-button-next {
+    left: 0;
+  }
+  
+  body.libraries398818 .swiper-container {
+    height: auto !important;
+    margin-bottom: 25px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+  
+  .swiper-button-disabled {
+    display: none;
+  }
+  
+  .crop-hop #filter-section {
+    justify-content: flex-end;
+    }
+    
+    .crop-hop div#tag-component {
+    display: none;
+    }
+  /* #endregion -- crop hop ---- */
+  
+  /* #region -- css for agenda coloring -- */
+  
+  .agenda__item-speaker-item-circle {
+    color: #fff;
+    background: var(--theme-secondary-color);
+    font-weight: bold;
+  }
+  
+  .agenda__item-speaker-item-details {
+    font-weight: 400;
+  }
+  
+  body.grouped-agenda .agenda__item-row,
+  body.grouped-agenda .agenda__item-row:hover,
+  body.order-by-start .agenda__item-container.card,
+  body.order-by-start .agenda__item-container.card:hover {
+    border-width: 8px;
+    border-style: solid;
+    color: #ccc;
+  }
+  
+  .agenda__item-tag-break {
+    border-color: var(--abc-1);
+    background-color: var(--abc-1);
+  }
+  
+  body.order-by-start .agenda__item-tag-break {
+    border-color: unset;
+    background-color: transparent;
+  }
+  
+  body.order-by-start .agenda__item-tag-break .agenda__item-container.card {
+    border-color: var(--abc-1);
+    background-color: var(--abc-1) !important;
+  }
+  
+  /* # region --- video on demand ----- */
+  
+  .video-on-demand .single-vod-item {
+    background-color: var(--bayer-dark-blue);
+    padding-bottom: 0;
+  }
+  .video-on-demand .thumbnail-container {
+    height: 150px !important;
+    overflow: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  .video-on-demand .video-description-wrapper,
+  .video-on-demand .resources-section.d-flex.flex-wrap {
+    display: none;
+  }
+  .video-on-demand .video-overlay {
+    text-align: center;
+  }
+  .video-on-demand p.video-overlay-text {
+    font-style: italic;
+    color: var(--bayer-bright-green);
+    background-color: var(--bayer-dark-blue);
+    z-index: 100;
+    border-top: 1px solid #ffffff29;
+    font-size: 1.5em;
+  }
+  .video-on-demand .session-thumb-container {
+    border-radius: 1em;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  /* # #endregion  -- video on demand ----- */
+  
+  /* #region -- global chat ---  */
+  .global-chat {
+    display: none;
+  }
+  .main-stage .global-chat {
+    display: unset;
+  }
+  /* #endregion --- global chat */
+  
+  /* manual ordering */
+  /* this section commented out because it was conflicting with the big tagged bit below, caused a visible issue of misordering for 1504854*/
+  /*
+  
+     .agenda__item-row.upNext.agenda__item-1504854-row {
+    order: 110000;
+  }
+  .agenda__item-row.upNext.agenda__item-1504864-row {
+    order: 110001;
+  }
+  .agenda__item-row.upNext.agenda__item-1456254-row {
+    order: 720001;
+  }
+  
+  */
+  
+  .agenda__item-tag-mini-sym-parent-1,
+  .agenda__item-tag-mini-sym-children-1,
+  .agenda__item-tag-mini-sym-parent-13,
+  .agenda__item-tag-mini-sym-children-13,
+  .agenda__item-tag-mini-sym-parent-25,
+  .agenda__item-tag-mini-sym-children-25,
+  .agenda__item-tag-mini-sym-parent-37,
+  .agenda__item-tag-mini-sym-children-37,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-1
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-1
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-13
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-13
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-25
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-25
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-37
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-37
+    .agenda__item-container.card {
+    border-color: var(--abc-1);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-2,
+  .agenda__item-tag-mini-sym-children-2,
+  .agenda__item-tag-mini-sym-parent-14,
+  .agenda__item-tag-mini-sym-children-14,
+  .agenda__item-tag-mini-sym-parent-26,
+  .agenda__item-tag-mini-sym-children-26,
+  .agenda__item-tag-mini-sym-parent-38,
+  .agenda__item-tag-mini-sym-children-38,
+  .agenda__item-1471704-row,
+  .agenda__item-1471704-row .agenda__item-container.card,
+  .agenda__item-1471774-row,
+  .agenda__item-1471774-row .agenda__item-container.card,
+  .agenda__item-1470734-row,
+  .agenda__item-1470734-row .agenda__item-container.card,
+  .agenda__item-1470804-row,
+  .agenda__item-1470804-row .agenda__item-container.card,
+  .agenda__item-1472754-row,
+  .agenda__item-1472754-row .agenda__item-container.card,
+  .agenda__item-1472824-row,
+  .agenda__item-1472824-row .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-2
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-2
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-14
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-14
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-26
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-26
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-38
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-38
+    .agenda__item-container.card {
+    border-color: var(--abc-2);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-3,
+  .agenda__item-tag-mini-sym-children-3,
+  .agenda__item-tag-mini-sym-parent-15,
+  .agenda__item-tag-mini-sym-children-15,
+  .agenda__item-tag-mini-sym-parent-27,
+  .agenda__item-tag-mini-sym-children-27,
+  .agenda__item-tag-mini-sym-parent-39,
+  .agenda__item-tag-mini-sym-children-39,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-3
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-3
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-15
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-15
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-27
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-27
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-39
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-39
+    .agenda__item-container.card {
+    border-color: var(--abc-3);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-4,
+  .agenda__item-tag-mini-sym-children-4,
+  .agenda__item-tag-mini-sym-parent-16,
+  .agenda__item-tag-mini-sym-children-16,
+  .agenda__item-tag-mini-sym-parent-28,
+  .agenda__item-tag-mini-sym-children-28,
+  .agenda__item-tag-mini-sym-parent-41,
+  .agenda__item-tag-mini-sym-children-41,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-4
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-4
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-16
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-16
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-28
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-28
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-41
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-41
+    .agenda__item-container.card {
+    border-color: var(--abc-4);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-5,
+  .agenda__item-tag-mini-sym-children-5,
+  .agenda__item-tag-mini-sym-parent-17,
+  .agenda__item-tag-mini-sym-children-17,
+  .agenda__item-tag-mini-sym-parent-29,
+  .agenda__item-tag-mini-sym-children-29,
+  .agenda__item-tag-mini-sym-parent-42,
+  .agenda__item-tag-mini-sym-children-42,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-5
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-5
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-17
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-17
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-29
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-29
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-42
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-42
+    .agenda__item-container.card {
+    border-color: var(--abc-5);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-6,
+  .agenda__item-tag-mini-sym-children-6,
+  .agenda__item-tag-mini-sym-parent-18,
+  .agenda__item-tag-mini-sym-children-18,
+  .agenda__item-tag-mini-sym-parent-30,
+  .agenda__item-tag-mini-sym-children-30,
+  .agenda__item-tag-mini-sym-parent-43,
+  .agenda__item-tag-mini-sym-children-43,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-6
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-6
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-18
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-18
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-30
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-30
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-43
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-43
+    .agenda__item-container.card {
+    border-color: var(--abc-6);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-7,
+  .agenda__item-tag-mini-sym-children-7,
+  .agenda__item-tag-mini-sym-parent-19,
+  .agenda__item-tag-mini-sym-children-19,
+  .agenda__item-tag-mini-sym-parent-31,
+  .agenda__item-tag-mini-sym-children-31,
+  .agenda__item-tag-mini-sym-parent-44,
+  .agenda__item-tag-mini-sym-children-44,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-7
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-7
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-19
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-19
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-31
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-31
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-44
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-44
+    .agenda__item-container.card {
+    border-color: var(--abc-7);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-8,
+  .agenda__item-tag-mini-sym-children-8,
+  .agenda__item-tag-mini-sym-parent-20,
+  .agenda__item-tag-mini-sym-children-20,
+  .agenda__item-tag-mini-sym-parent-32,
+  .agenda__item-tag-mini-sym-children-32,
+  .agenda__item-tag-mini-sym-parent-45,
+  .agenda__item-tag-mini-sym-children-45,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-8
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-8
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-20
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-20
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-32
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-32
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-45
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-45
+    .agenda__item-container.card {
+    border-color: var(--abc-8);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-9,
+  .agenda__item-tag-mini-sym-children-9,
+  .agenda__item-tag-mini-sym-parent-21,
+  .agenda__item-tag-mini-sym-children-21,
+  .agenda__item-tag-mini-sym-parent-33,
+  .agenda__item-tag-mini-sym-children-33,
+  .agenda__item-1456874-row,
+  .agenda__item-1456874-row .agenda__item-container.card,
+  .agenda__item-1457234-row,
+  .agenda__item-1457234-row .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-9
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-9
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-21
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-21
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-33
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-33
+    .agenda__item-container.card {
+    border-color: var(--abc-9);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-10,
+  .agenda__item-tag-mini-sym-children-10,
+  .agenda__item-tag-mini-sym-parent-22,
+  .agenda__item-tag-mini-sym-children-22,
+  .agenda__item-tag-mini-sym-parent-34,
+  .agenda__item-tag-mini-sym-children-34,
+  .agenda__item-1472424-row,
+  .agenda__item-1472424-row .agenda__item-container.card,
+  .agenda__item-1472494-row,
+  .agenda__item-1472494-row .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-10
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-10
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-22
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-22
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-34
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-34
+    .agenda__item-container.card {
+    border-color: var(--abc-10);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-11,
+  .agenda__item-tag-mini-sym-children-11,
+  .agenda__item-tag-mini-sym-parent-23,
+  .agenda__item-tag-mini-sym-children-23,
+  .agenda__item-tag-mini-sym-parent-35,
+  .agenda__item-tag-mini-sym-children-35,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-11
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-11
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-23
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-23
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-35
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-35
+    .agenda__item-container.card {
+    border-color: var(--abc-11);
+  }
+  
+  .agenda__item-tag-mini-sym-parent-12,
+  .agenda__item-tag-mini-sym-children-12,
+  .agenda__item-tag-mini-sym-parent-24,
+  .agenda__item-tag-mini-sym-children-24,
+  .agenda__item-tag-mini-sym-parent-36,
+  .agenda__item-tag-mini-sym-children-36,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-12
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-12
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-24
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-24
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-parent-36
+    .agenda__item-container.card,
+  body.order-by-start
+    .agenda__item-tag-mini-sym-children-36
+    .agenda__item-container.card {
+    border-color: var(--abc-12);
+  }
+  
+  /* #endregion -- css for agenda coloring -- */
+  
+  /* #region --- login page ---- */
+  body.logged-out {
+    background-color: var(--bayer-dark-blue);
+  }
+  
+  /* #endreigon --- login page */
+  
+  /* #region -------  css for ordering agenda items  ------  */
+  .grouped-agenda .agenda__item-1455374-row {
+  order:10001;
+  }
+  .grouped-agenda .agenda__item-1455384-row {
+  order:20001;
+  }
+  .grouped-agenda .agenda__item-1455394-row {
+  order:30001;
+  }
+  .grouped-agenda .agenda__item-1455404-row {
+  order:40001;
+  }
+  .grouped-agenda .agenda__item-1455414-row {
+  order:50001;
+  }
+  .grouped-agenda .agenda__item-1455424-row {
+  order:60001;
+  }
+  .grouped-agenda .agenda__item-1474014-row {
+  order:70001;
+  }
+  .grouped-agenda .agenda__item-1455434-row {
+  order:70001;
+  }
+  .grouped-agenda .agenda__item-1455444-row {
+  order:80001;
+  }
+  .grouped-agenda .agenda__item-1504854-row {
+  order:90001;
+  }
+  .grouped-agenda .agenda__item-1504864-row {
+  order:100001;
+  }
+  .grouped-agenda .agenda__item-1518064-row {
+  order:120001;
+  }
+  .grouped-agenda .agenda__item-1455454-row {
+  order:110001;
+  }
+  .grouped-agenda .agenda__item-1455464-row {
+  order:130001;
+  }
+  .grouped-agenda .agenda__item-1464344-row {
+  order:130002;
+  }
+  .grouped-agenda .agenda__item-1457174-row {
+  order:130003;
+  }
+  .grouped-agenda .agenda__item-1464354-row {
+  order:130004;
+  }
+  .grouped-agenda .agenda__item-1459724-row {
+  order:130005;
+  }
+  .grouped-agenda .agenda__item-1455474-row {
+  order:130006;
+  }
+  .grouped-agenda .agenda__item-1464364-row {
+  order:140001;
+  }
+  .grouped-agenda .agenda__item-1455484-row {
+  order:140002;
+  }
+  .grouped-agenda .agenda__item-1455494-row {
+  order:140003;
+  }
+  .grouped-agenda .agenda__item-1464374-row {
+  order:140004;
+  }
+  .grouped-agenda .agenda__item-1455504-row {
+  order:140005;
+  }
+  .grouped-agenda .agenda__item-1464384-row {
+  order:140006;
+  }
+  .grouped-agenda .agenda__item-1464394-row {
+  order:140007;
+  }
+  .grouped-agenda .agenda__item-1455514-row {
+  order:140008;
+  }
+  .grouped-agenda .agenda__item-1464404-row {
+  order:150001;
+  }
+  .grouped-agenda .agenda__item-1455524-row {
+  order:150002;
+  }
+  .grouped-agenda .agenda__item-1455534-row {
+  order:150003;
+  }
+  .grouped-agenda .agenda__item-1464414-row {
+  order:150004;
+  }
+  .grouped-agenda .agenda__item-1464424-row {
+  order:150005;
+  }
+  .grouped-agenda .agenda__item-1455544-row {
+  order:150006;
+  }
+  .grouped-agenda .agenda__item-1455554-row {
+  order:150007;
+  }
+  .grouped-agenda .agenda__item-1464434-row {
+  order:150008;
+  }
+  .grouped-agenda .agenda__item-1464454-row {
+  order:160001;
+  }
+  .grouped-agenda .agenda__item-1455564-row {
+  order:160002;
+  }
+  .grouped-agenda .agenda__item-1457184-row {
+  order:160003;
+  }
+  .grouped-agenda .agenda__item-1455584-row {
+  order:160004;
+  }
+  .grouped-agenda .agenda__item-1455594-row {
+  order:160005;
+  }
+  .grouped-agenda .agenda__item-1455604-row {
+  order:160006;
+  }
+  .grouped-agenda .agenda__item-1456504-row {
+  order:160007;
+  }
+  .grouped-agenda .agenda__item-1456514-row {
+  order:160008;
+  }
+  .grouped-agenda .agenda__item-1455634-row {
+  order:170001;
+  }
+  .grouped-agenda .agenda__item-1456534-row {
+  order:170002;
+  }
+  .grouped-agenda .agenda__item-1455654-row {
+  order:170003;
+  }
+  .grouped-agenda .agenda__item-1456554-row {
+  order:170004;
+  }
+  .grouped-agenda .agenda__item-1455674-row {
+  order:170005;
+  }
+  .grouped-agenda .agenda__item-1456574-row {
+  order:170006;
+  }
+  .grouped-agenda .agenda__item-1457194-row {
+  order:170007;
+  }
+  .grouped-agenda .agenda__item-1456594-row {
+  order:170008;
+  }
+  .grouped-agenda .agenda__item-1455714-row {
+  order:180001;
+  }
+  .grouped-agenda .agenda__item-1456614-row {
+  order:180002;
+  }
+  .grouped-agenda .agenda__item-1456624-row {
+  order:180003;
+  }
+  .grouped-agenda .agenda__item-1455744-row {
+  order:180004;
+  }
+  .grouped-agenda .agenda__item-1455754-row {
+  order:180005;
+  }
+  .grouped-agenda .agenda__item-1456654-row {
+  order:180006;
+  }
+  .grouped-agenda .agenda__item-1456664-row {
+  order:180007;
+  }
+  .grouped-agenda .agenda__item-1456674-row {
+  order:180008;
+  }
+  .grouped-agenda .agenda__item-1455794-row {
+  order:180009;
+  }
+  .grouped-agenda .agenda__item-1456694-row {
+  order:190001;
+  }
+  .grouped-agenda .agenda__item-1457204-row {
+  order:200001;
+  }
+  .grouped-agenda .agenda__item-1456724-row {
+  order:210002;
+  }
+  .grouped-agenda .agenda__item-1456734-row {
+  order:210003;
+  }
+  .grouped-agenda .agenda__item-1455854-row {
+  order:210004;
+  }
+  .grouped-agenda .agenda__item-1456754-row {
+  order:210005;
+  }
+  .grouped-agenda .agenda__item-1456764-row {
+  order:210006;
+  }
+  .grouped-agenda .agenda__item-1456774-row {
+  order:210007;
+  }
+  .grouped-agenda .agenda__item-1455894-row {
+  order:210008;
+  }
+  .grouped-agenda .agenda__item-1455904-row {
+  order:210009;
+  }
+  .grouped-agenda .agenda__item-1456804-row {
+  order:220001;
+  }
+  .grouped-agenda .agenda__item-1456814-row {
+  order:220002;
+  }
+  .grouped-agenda .agenda__item-1455934-row {
+  order:220003;
+  }
+  .grouped-agenda .agenda__item-1457214-row {
+  order:220004;
+  }
+  .grouped-agenda .agenda__item-1456834-row {
+  order:220005;
+  }
+  .grouped-agenda .agenda__item-1455954-row {
+  order:220006;
+  }
+  .grouped-agenda .agenda__item-1455964-row {
+  order:220007;
+  }
+  .grouped-agenda .agenda__item-1455974-row {
+  order:220008;
+  }
+  .grouped-agenda .agenda__item-1456874-row {
+  order:230001;
+  }
+  .grouped-agenda .agenda__item-1456884-row {
+  order:230002;
+  }
+  .grouped-agenda .agenda__item-1456004-row {
+  order:230003;
+  }
+  .grouped-agenda .agenda__item-1456014-row {
+  order:230004;
+  }
+  .grouped-agenda .agenda__item-1456914-row {
+  order:230005;
+  }
+  .grouped-agenda .agenda__item-1456034-row {
+  order:230006;
+  }
+  .grouped-agenda .agenda__item-1456934-row {
+  order:230007;
+  }
+  .grouped-agenda .agenda__item-1457234-row {
+  order:230008;
+  }
+  .grouped-agenda .agenda__item-1456054-row {
+  order:240001;
+  }
+  .grouped-agenda .agenda__item-1456954-row {
+  order:240002;
+  }
+  .grouped-agenda .agenda__item-1456074-row {
+  order:240003;
+  }
+  .grouped-agenda .agenda__item-1456974-row {
+  order:240004;
+  }
+  .grouped-agenda .agenda__item-1456984-row {
+  order:240005;
+  }
+  .grouped-agenda .agenda__item-1456994-row {
+  order:240006;
+  }
+  .grouped-agenda .agenda__item-1457004-row {
+  order:240007;
+  }
+  .grouped-agenda .agenda__item-1457014-row {
+  order:240008;
+  }
+  .grouped-agenda .agenda__item-1456134-row {
+  order:250001;
+  }
+  .grouped-agenda .agenda__item-1457164-row {
+  order:250002;
+  }
+  .grouped-agenda .agenda__item-1457044-row {
+  order:250003;
+  }
+  .grouped-agenda .agenda__item-1470524-row {
+  order:250004;
+  }
+  .grouped-agenda .agenda__item-1470534-row {
+  order:250005;
+  }
+  .grouped-agenda .agenda__item-1470544-row {
+  order:250006;
+  }
+  .grouped-agenda .agenda__item-1470554-row {
+  order:250007;
+  }
+  .grouped-agenda .agenda__item-1470564-row {
+  order:250008;
+  }
+  .grouped-agenda .agenda__item-1470574-row {
+  order:260001;
+  }
+  .grouped-agenda .agenda__item-1470584-row {
+  order:260002;
+  }
+  .grouped-agenda .agenda__item-1470594-row {
+  order:260003;
+  }
+  .grouped-agenda .agenda__item-1470604-row {
+  order:260004;
+  }
+  .grouped-agenda .agenda__item-1470614-row {
+  order:260005;
+  }
+  .grouped-agenda .agenda__item-1470624-row {
+  order:260006;
+  }
+  .grouped-agenda .agenda__item-1470634-row {
+  order:260007;
+  }
+  .grouped-agenda .agenda__item-1470644-row {
+  order:260008;
+  }
+  .grouped-agenda .agenda__item-1470654-row {
+  order:270001;
+  }
+  .grouped-agenda .agenda__item-1470664-row {
+  order:270002;
+  }
+  .grouped-agenda .agenda__item-1470674-row {
+  order:270003;
+  }
+  .grouped-agenda .agenda__item-1470684-row {
+  order:270004;
+  }
+  .grouped-agenda .agenda__item-1470694-row {
+  order:270005;
+  }
+  .grouped-agenda .agenda__item-1470704-row {
+  order:270006;
+  }
+  .grouped-agenda .agenda__item-1470714-row {
+  order:270007;
+  }
+  .grouped-agenda .agenda__item-1470724-row {
+  order:270008;
+  }
+  .grouped-agenda .agenda__item-1470734-row {
+  order:280001;
+  }
+  .grouped-agenda .agenda__item-1470744-row {
+  order:280002;
+  }
+  .grouped-agenda .agenda__item-1470754-row {
+  order:280003;
+  }
+  .grouped-agenda .agenda__item-1470764-row {
+  order:280004;
+  }
+  .grouped-agenda .agenda__item-1470774-row {
+  order:280005;
+  }
+  .grouped-agenda .agenda__item-1470784-row {
+  order:280006;
+  }
+  .grouped-agenda .agenda__item-1470794-row {
+  order:280007;
+  }
+  .grouped-agenda .agenda__item-1470804-row {
+  order:280008;
+  }
+  .grouped-agenda .agenda__item-1470814-row {
+  order:290001;
+  }
+  .grouped-agenda .agenda__item-1470824-row {
+  order:290002;
+  }
+  .grouped-agenda .agenda__item-1470834-row {
+  order:290003;
+  }
+  .grouped-agenda .agenda__item-1470844-row {
+  order:290004;
+  }
+  .grouped-agenda .agenda__item-1470854-row {
+  order:290005;
+  }
+  .grouped-agenda .agenda__item-1470864-row {
+  order:290006;
+  }
+  .grouped-agenda .agenda__item-1470874-row {
+  order:290007;
+  }
+  .grouped-agenda .agenda__item-1470884-row {
+  order:290008;
+  }
+  .grouped-agenda .agenda__item-1470894-row {
+  order:300001;
+  }
+  .grouped-agenda .agenda__item-1470904-row {
+  order:300002;
+  }
+  .grouped-agenda .agenda__item-1470914-row {
+  order:300003;
+  }
+  .grouped-agenda .agenda__item-1470924-row {
+  order:300004;
+  }
+  .grouped-agenda .agenda__item-1470934-row {
+  order:300005;
+  }
+  .grouped-agenda .agenda__item-1470944-row {
+  order:300006;
+  }
+  .grouped-agenda .agenda__item-1470954-row {
+  order:300007;
+  }
+  .grouped-agenda .agenda__item-1470964-row {
+  order:300008;
+  }
+  .grouped-agenda .agenda__item-1470974-row {
+  order:310001;
+  }
+  .grouped-agenda .agenda__item-1470984-row {
+  order:310002;
+  }
+  .grouped-agenda .agenda__item-1470994-row {
+  order:310003;
+  }
+  .grouped-agenda .agenda__item-1471004-row {
+  order:310004;
+  }
+  .grouped-agenda .agenda__item-1471014-row {
+  order:310005;
+  }
+  .grouped-agenda .agenda__item-1471024-row {
+  order:310006;
+  }
+  .grouped-agenda .agenda__item-1471034-row {
+  order:310007;
+  }
+  .grouped-agenda .agenda__item-1471044-row {
+  order:310008;
+  }
+  .grouped-agenda .agenda__item-1471054-row {
+  order:320001;
+  }
+  .grouped-agenda .agenda__item-1471064-row {
+  order:320002;
+  }
+  .grouped-agenda .agenda__item-1471074-row {
+  order:320003;
+  }
+  .grouped-agenda .agenda__item-1471084-row {
+  order:320004;
+  }
+  .grouped-agenda .agenda__item-1471094-row {
+  order:320005;
+  }
+  .grouped-agenda .agenda__item-1471104-row {
+  order:320006;
+  }
+  .grouped-agenda .agenda__item-1471114-row {
+  order:320007;
+  }
+  .grouped-agenda .agenda__item-1471124-row {
+  order:320008;
+  }
+  .grouped-agenda .agenda__item-1471134-row {
+  order:330001;
+  }
+  .grouped-agenda .agenda__item-1471144-row {
+  order:330002;
+  }
+  .grouped-agenda .agenda__item-1471154-row {
+  order:330003;
+  }
+  .grouped-agenda .agenda__item-1471164-row {
+  order:330004;
+  }
+  .grouped-agenda .agenda__item-1471174-row {
+  order:330005;
+  }
+  .grouped-agenda .agenda__item-1471184-row {
+  order:330006;
+  }
+  .grouped-agenda .agenda__item-1471194-row {
+  order:330007;
+  }
+  .grouped-agenda .agenda__item-1471204-row {
+  order:330008;
+  }
+  .grouped-agenda .agenda__item-1471214-row {
+  order:340001;
+  }
+  .grouped-agenda .agenda__item-1471224-row {
+  order:340002;
+  }
+  .grouped-agenda .agenda__item-1471234-row {
+  order:340003;
+  }
+  .grouped-agenda .agenda__item-1471244-row {
+  order:340004;
+  }
+  .grouped-agenda .agenda__item-1471254-row {
+  order:340005;
+  }
+  .grouped-agenda .agenda__item-1471264-row {
+  order:340006;
+  }
+  .grouped-agenda .agenda__item-1471274-row {
+  order:340007;
+  }
+  .grouped-agenda .agenda__item-1471284-row {
+  order:340008;
+  }
+  .grouped-agenda .agenda__item-1471294-row {
+  order:340009;
+  }
+  .grouped-agenda .agenda__item-1471304-row {
+  order:350001;
+  }
+  .grouped-agenda .agenda__item-1471314-row {
+  order:350002;
+  }
+  .grouped-agenda .agenda__item-1471324-row {
+  order:350003;
+  }
+  .grouped-agenda .agenda__item-1471334-row {
+  order:350004;
+  }
+  .grouped-agenda .agenda__item-1471344-row {
+  order:350005;
+  }
+  .grouped-agenda .agenda__item-1471354-row {
+  order:350006;
+  }
+  .grouped-agenda .agenda__item-1471364-row {
+  order:350007;
+  }
+  .grouped-agenda .agenda__item-1471374-row {
+  order:350008;
+  }
+  .grouped-agenda .agenda__item-1471384-row {
+  order:360001;
+  }
+  .grouped-agenda .agenda__item-1471444-row {
+  order:360002;
+  }
+  .grouped-agenda .agenda__item-1471434-row {
+  order:360003;
+  }
+  .grouped-agenda .agenda__item-1471424-row {
+  order:360004;
+  }
+  .grouped-agenda .agenda__item-1471414-row {
+  order:360005;
+  }
+  .grouped-agenda .agenda__item-1471404-row {
+  order:360006;
+  }
+  .grouped-agenda .agenda__item-1471394-row {
+  order:360007;
+  }
+  .grouped-agenda .agenda__item-1471454-row {
+  order:360008;
+  }
+  .grouped-agenda .agenda__item-1471464-row {
+  order:370001;
+  }
+  .grouped-agenda .agenda__item-1471474-row {
+  order:370002;
+  }
+  .grouped-agenda .agenda__item-1471484-row {
+  order:370003;
+  }
+  .grouped-agenda .agenda__item-1471494-row {
+  order:370004;
+  }
+  .grouped-agenda .agenda__item-1471504-row {
+  order:370005;
+  }
+  .grouped-agenda .agenda__item-1471514-row {
+  order:370006;
+  }
+  .grouped-agenda .agenda__item-1471524-row {
+  order:370007;
+  }
+  .grouped-agenda .agenda__item-1471534-row {
+  order:370008;
+  }
+  .grouped-agenda .agenda__item-1471544-row {
+  order:380001;
+  }
+  .grouped-agenda .agenda__item-1471554-row {
+  order:380002;
+  }
+  .grouped-agenda .agenda__item-1471564-row {
+  order:380003;
+  }
+  .grouped-agenda .agenda__item-1471574-row {
+  order:380004;
+  }
+  .grouped-agenda .agenda__item-1471584-row {
+  order:380005;
+  }
+  .grouped-agenda .agenda__item-1471594-row {
+  order:380006;
+  }
+  .grouped-agenda .agenda__item-1471604-row {
+  order:380007;
+  }
+  .grouped-agenda .agenda__item-1471614-row {
+  order:380008;
+  }
+  .grouped-agenda .agenda__item-1471624-row {
+  order:390001;
+  }
+  .grouped-agenda .agenda__item-1471634-row {
+  order:390002;
+  }
+  .grouped-agenda .agenda__item-1471644-row {
+  order:390003;
+  }
+  .grouped-agenda .agenda__item-1471654-row {
+  order:390004;
+  }
+  .grouped-agenda .agenda__item-1471664-row {
+  order:390005;
+  }
+  .grouped-agenda .agenda__item-1471674-row {
+  order:390006;
+  }
+  .grouped-agenda .agenda__item-1471684-row {
+  order:390007;
+  }
+  .grouped-agenda .agenda__item-1471694-row {
+  order:390008;
+  }
+  .grouped-agenda .agenda__item-1471704-row {
+  order:400001;
+  }
+  .grouped-agenda .agenda__item-1471714-row {
+  order:400002;
+  }
+  .grouped-agenda .agenda__item-1471724-row {
+  order:400003;
+  }
+  .grouped-agenda .agenda__item-1471734-row {
+  order:400004;
+  }
+  .grouped-agenda .agenda__item-1471744-row {
+  order:400005;
+  }
+  .grouped-agenda .agenda__item-1471754-row {
+  order:400006;
+  }
+  .grouped-agenda .agenda__item-1471764-row {
+  order:400007;
+  }
+  .grouped-agenda .agenda__item-1471774-row {
+  order:400008;
+  }
+  .grouped-agenda .agenda__item-1471784-row {
+  order:410001;
+  }
+  .grouped-agenda .agenda__item-1471794-row {
+  order:410002;
+  }
+  .grouped-agenda .agenda__item-1471804-row {
+  order:410003;
+  }
+  .grouped-agenda .agenda__item-1471814-row {
+  order:410004;
+  }
+  .grouped-agenda .agenda__item-1471824-row {
+  order:410005;
+  }
+  .grouped-agenda .agenda__item-1471834-row {
+  order:410006;
+  }
+  .grouped-agenda .agenda__item-1471844-row {
+  order:410007;
+  }
+  .grouped-agenda .agenda__item-1471854-row {
+  order:410008;
+  }
+  .grouped-agenda .agenda__item-1471864-row {
+  order:420001;
+  }
+  .grouped-agenda .agenda__item-1471874-row {
+  order:420002;
+  }
+  .grouped-agenda .agenda__item-1471884-row {
+  order:420003;
+  }
+  .grouped-agenda .agenda__item-1471894-row {
+  order:420004;
+  }
+  .grouped-agenda .agenda__item-1471904-row {
+  order:420005;
+  }
+  .grouped-agenda .agenda__item-1471914-row {
+  order:420006;
+  }
+  .grouped-agenda .agenda__item-1471924-row {
+  order:420007;
+  }
+  .grouped-agenda .agenda__item-1471934-row {
+  order:420008;
+  }
+  .grouped-agenda .agenda__item-1471944-row {
+  order:430001;
+  }
+  .grouped-agenda .agenda__item-1471954-row {
+  order:440001;
+  }
+  .grouped-agenda .agenda__item-1471984-row {
+  order:450001;
+  }
+  .grouped-agenda .agenda__item-1471994-row {
+  order:450002;
+  }
+  .grouped-agenda .agenda__item-1472004-row {
+  order:450003;
+  }
+  .grouped-agenda .agenda__item-1472014-row {
+  order:460001;
+  }
+  .grouped-agenda .agenda__item-1472024-row {
+  order:460002;
+  }
+  .grouped-agenda .agenda__item-1472034-row {
+  order:460003;
+  }
+  .grouped-agenda .agenda__item-1472044-row {
+  order:460004;
+  }
+  .grouped-agenda .agenda__item-1472054-row {
+  order:460005;
+  }
+  .grouped-agenda .agenda__item-1472064-row {
+  order:460006;
+  }
+  .grouped-agenda .agenda__item-1472074-row {
+  order:460007;
+  }
+  .grouped-agenda .agenda__item-1472084-row {
+  order:460008;
+  }
+  .grouped-agenda .agenda__item-1472094-row {
+  order:470001;
+  }
+  .grouped-agenda .agenda__item-1472104-row {
+  order:470002;
+  }
+  .grouped-agenda .agenda__item-1472114-row {
+  order:470003;
+  }
+  .grouped-agenda .agenda__item-1472124-row {
+  order:470004;
+  }
+  .grouped-agenda .agenda__item-1472134-row {
+  order:470005;
+  }
+  .grouped-agenda .agenda__item-1472144-row {
+  order:470006;
+  }
+  .grouped-agenda .agenda__item-1472154-row {
+  order:470007;
+  }
+  .grouped-agenda .agenda__item-1472164-row {
+  order:470008;
+  }
+  .grouped-agenda .agenda__item-1472174-row {
+  order:480001;
+  }
+  .grouped-agenda .agenda__item-1472184-row {
+  order:480002;
+  }
+  .grouped-agenda .agenda__item-1472194-row {
+  order:480003;
+  }
+  .grouped-agenda .agenda__item-1472204-row {
+  order:480004;
+  }
+  .grouped-agenda .agenda__item-1472214-row {
+  order:480005;
+  }
+  .grouped-agenda .agenda__item-1472224-row {
+  order:480006;
+  }
+  .grouped-agenda .agenda__item-1472234-row {
+  order:480007;
+  }
+  .grouped-agenda .agenda__item-1472244-row {
+  order:480008;
+  }
+  .grouped-agenda .agenda__item-1472254-row {
+  order:490001;
+  }
+  .grouped-agenda .agenda__item-1472264-row {
+  order:490002;
+  }
+  .grouped-agenda .agenda__item-1472274-row {
+  order:490003;
+  }
+  .grouped-agenda .agenda__item-1472284-row {
+  order:490004;
+  }
+  .grouped-agenda .agenda__item-1472294-row {
+  order:490005;
+  }
+  .grouped-agenda .agenda__item-1472304-row {
+  order:490006;
+  }
+  .grouped-agenda .agenda__item-1472314-row {
+  order:490007;
+  }
+  .grouped-agenda .agenda__item-1472324-row {
+  order:490008;
+  }
+  .grouped-agenda .agenda__item-1472334-row {
+  order:500001;
+  }
+  .grouped-agenda .agenda__item-1472344-row {
+  order:500002;
+  }
+  .grouped-agenda .agenda__item-1472354-row {
+  order:500003;
+  }
+  .grouped-agenda .agenda__item-1472364-row {
+  order:500004;
+  }
+  .grouped-agenda .agenda__item-1472374-row {
+  order:500005;
+  }
+  .grouped-agenda .agenda__item-1472384-row {
+  order:500006;
+  }
+  .grouped-agenda .agenda__item-1472394-row {
+  order:500007;
+  }
+  .grouped-agenda .agenda__item-1472404-row {
+  order:500008;
+  }
+  .grouped-agenda .agenda__item-1472414-row {
+  order:500009;
+  }
+  .grouped-agenda .agenda__item-1472424-row {
+  order:510001;
+  }
+  .grouped-agenda .agenda__item-1472434-row {
+  order:510002;
+  }
+  .grouped-agenda .agenda__item-1472444-row {
+  order:510003;
+  }
+  .grouped-agenda .agenda__item-1472454-row {
+  order:510004;
+  }
+  .grouped-agenda .agenda__item-1472464-row {
+  order:510005;
+  }
+  .grouped-agenda .agenda__item-1472474-row {
+  order:510006;
+  }
+  .grouped-agenda .agenda__item-1472484-row {
+  order:510007;
+  }
+  .grouped-agenda .agenda__item-1472494-row {
+  order:510008;
+  }
+  .grouped-agenda .agenda__item-1472504-row {
+  order:520001;
+  }
+  .grouped-agenda .agenda__item-1472514-row {
+  order:520002;
+  }
+  .grouped-agenda .agenda__item-1472524-row {
+  order:520003;
+  }
+  .grouped-agenda .agenda__item-1472534-row {
+  order:520004;
+  }
+  .grouped-agenda .agenda__item-1472544-row {
+  order:520005;
+  }
+  .grouped-agenda .agenda__item-1472554-row {
+  order:520006;
+  }
+  .grouped-agenda .agenda__item-1472564-row {
+  order:520007;
+  }
+  .grouped-agenda .agenda__item-1472574-row {
+  order:520008;
+  }
+  .grouped-agenda .agenda__item-1472584-row {
+  order:530001;
+  }
+  .grouped-agenda .agenda__item-1472594-row {
+  order:530002;
+  }
+  .grouped-agenda .agenda__item-1472604-row {
+  order:530003;
+  }
+  .grouped-agenda .agenda__item-1472614-row {
+  order:530004;
+  }
+  .grouped-agenda .agenda__item-1472624-row {
+  order:530005;
+  }
+  .grouped-agenda .agenda__item-1472634-row {
+  order:530006;
+  }
+  .grouped-agenda .agenda__item-1472644-row {
+  order:530007;
+  }
+  .grouped-agenda .agenda__item-1472654-row {
+  order:530008;
+  }
+  .grouped-agenda .agenda__item-1472664-row {
+  order:540001;
+  }
+  .grouped-agenda .agenda__item-1472674-row {
+  order:540002;
+  }
+  .grouped-agenda .agenda__item-1472684-row {
+  order:540003;
+  }
+  .grouped-agenda .agenda__item-1472694-row {
+  order:540004;
+  }
+  .grouped-agenda .agenda__item-1472704-row {
+  order:540005;
+  }
+  .grouped-agenda .agenda__item-1472714-row {
+  order:540006;
+  }
+  .grouped-agenda .agenda__item-1472724-row {
+  order:540007;
+  }
+  .grouped-agenda .agenda__item-1472734-row {
+  order:540008;
+  }
+  .grouped-agenda .agenda__item-1472744-row {
+  order:550001;
+  }
+  .grouped-agenda .agenda__item-1472754-row {
+  order:560001;
+  }
+  .grouped-agenda .agenda__item-1472764-row {
+  order:560002;
+  }
+  .grouped-agenda .agenda__item-1472774-row {
+  order:560003;
+  }
+  .grouped-agenda .agenda__item-1472784-row {
+  order:560004;
+  }
+  .grouped-agenda .agenda__item-1472794-row {
+  order:560005;
+  }
+  .grouped-agenda .agenda__item-1472804-row {
+  order:560006;
+  }
+  .grouped-agenda .agenda__item-1472814-row {
+  order:560007;
+  }
+  .grouped-agenda .agenda__item-1472824-row {
+  order:560008;
+  }
+  .grouped-agenda .agenda__item-1472834-row {
+  order:570001;
+  }
+  .grouped-agenda .agenda__item-1472844-row {
+  order:570002;
+  }
+  .grouped-agenda .agenda__item-1472854-row {
+  order:570003;
+  }
+  .grouped-agenda .agenda__item-1472864-row {
+  order:570004;
+  }
+  .grouped-agenda .agenda__item-1472874-row {
+  order:570005;
+  }
+  .grouped-agenda .agenda__item-1472884-row {
+  order:570006;
+  }
+  .grouped-agenda .agenda__item-1472894-row {
+  order:570007;
+  }
+  .grouped-agenda .agenda__item-1472904-row {
+  order:570008;
+  }
+  .grouped-agenda .agenda__item-1472914-row {
+  order:580001;
+  }
+  .grouped-agenda .agenda__item-1472924-row {
+  order:580002;
+  }
+  .grouped-agenda .agenda__item-1472934-row {
+  order:580003;
+  }
+  .grouped-agenda .agenda__item-1472944-row {
+  order:580004;
+  }
+  .grouped-agenda .agenda__item-1472954-row {
+  order:580005;
+  }
+  .grouped-agenda .agenda__item-1472964-row {
+  order:580006;
+  }
+  .grouped-agenda .agenda__item-1472974-row {
+  order:580007;
+  }
+  .grouped-agenda .agenda__item-1472984-row {
+  order:580008;
+  }
+  .grouped-agenda .agenda__item-1472994-row {
+  order:590001;
+  }
+  .grouped-agenda .agenda__item-1473004-row {
+  order:590002;
+  }
+  .grouped-agenda .agenda__item-1473014-row {
+  order:590003;
+  }
+  .grouped-agenda .agenda__item-1473024-row {
+  order:590004;
+  }
+  .grouped-agenda .agenda__item-1473034-row {
+  order:590005;
+  }
+  .grouped-agenda .agenda__item-1473044-row {
+  order:590006;
+  }
+  .grouped-agenda .agenda__item-1473054-row {
+  order:590007;
+  }
+  .grouped-agenda .agenda__item-1473064-row {
+  order:590008;
+  }
+  .grouped-agenda .agenda__item-1473074-row {
+  order:600001;
+  }
+  .grouped-agenda .agenda__item-1473084-row {
+  order:600002;
+  }
+  .grouped-agenda .agenda__item-1473094-row {
+  order:600003;
+  }
+  .grouped-agenda .agenda__item-1473104-row {
+  order:600004;
+  }
+  .grouped-agenda .agenda__item-1473114-row {
+  order:600005;
+  }
+  .grouped-agenda .agenda__item-1473124-row {
+  order:600006;
+  }
+  .grouped-agenda .agenda__item-1473134-row {
+  order:600007;
+  }
+  .grouped-agenda .agenda__item-1473144-row {
+  order:600008;
+  }
+  .grouped-agenda .agenda__item-1473154-row {
+  order:610001;
+  }
+  .grouped-agenda .agenda__item-1473164-row {
+  order:610002;
+  }
+  .grouped-agenda .agenda__item-1473174-row {
+  order:610003;
+  }
+  .grouped-agenda .agenda__item-1473184-row {
+  order:610004;
+  }
+  .grouped-agenda .agenda__item-1473194-row {
+  order:610005;
+  }
+  .grouped-agenda .agenda__item-1473204-row {
+  order:610006;
+  }
+  .grouped-agenda .agenda__item-1473214-row {
+  order:610007;
+  }
+  .grouped-agenda .agenda__item-1473224-row {
+  order:610008;
+  }
+  .grouped-agenda .agenda__item-1473234-row {
+  order:620001;
+  }
+  .grouped-agenda .agenda__item-1473244-row {
+  order:620002;
+  }
+  .grouped-agenda .agenda__item-1473254-row {
+  order:620003;
+  }
+  .grouped-agenda .agenda__item-1473264-row {
+  order:620004;
+  }
+  .grouped-agenda .agenda__item-1473274-row {
+  order:620005;
+  }
+  .grouped-agenda .agenda__item-1473284-row {
+  order:620006;
+  }
+  .grouped-agenda .agenda__item-1473294-row {
+  order:620007;
+  }
+  .grouped-agenda .agenda__item-1473304-row {
+  order:620008;
+  }
+  .grouped-agenda .agenda__item-1457054-row {
+  order:630001;
+  }
+  .grouped-agenda .agenda__item-1457064-row {
+  order:640001;
+  }
+  .grouped-agenda .agenda__item-1457074-row {
+  order:650001;
+  }
+  .grouped-agenda .agenda__item-1456194-row {
+  order:660001;
+  }
+  .grouped-agenda .agenda__item-1456204-row {
+  order:690001;
+  }
+  .grouped-agenda .agenda__item-1457104-row {
+  order:700001;
+  }
+  .grouped-agenda .agenda__item-1456224-row {
+  order:710001;
+  }
+  .grouped-agenda .agenda__item-1456234-row {
+  order:720001;
+  }
+  .grouped-agenda .agenda__item-1456244-row {
+  order:730001;
+  }
+  /* #endregion */
+  
+  
+  
+  /* Bingo Page */
+  .BingoIframeWrapper iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 900px;
+  }
+  
+  
+  a#sso_url {
+      padding: 15px;
+      font-size: 18px !important;
+      margin-bottom: 30px;
+      margin-top: 30px;
+  }
+  
+  .login-card__login-copy .oa-login-submit-button {
+      border-bottom: 2px solid var(--theme-content-bg-text-color);
+  }
+  
+  div#login-card p {
+      font-size: 12px;
+      margin-bottom: 10px;
+  }
+  
+  
+  .login-card__label {
+      font-size: 12px;
+      padding: 0px;
+  left: 160px;
+  }
+  
+  div#login-card * {
+      font-size: 12px;
+  }
+  
+  div#login-card > p {
+      padding-left: 40px;
+      padding-right: 40px;
+  }
+  
+  a#showLogin {
+      font-size: 14px !important;
+      text-decoration: underline;
+      font-style: italic;
+  }
+  
+  .card-text.login-card__text {
+      margin-top: 40px;
+  display: none;
+  }
+  
+  input#email, #password {
+      max-width: 330px;
+  margin: 0 auto;
+  }
+  
+  .form-group.login-card__form-group.row {
+      align-items: center;
+      justify-content: center;
+  }
+  
+  
+  
+  .form-group.login-card__form-group.row div {
+      margin: 0 auto;
+  text-align: center;
+  }
+  
+  [aria-label="Login"] {
+      max-width: 187px;
+  }
+  
+  .form-group.login-card__form-group:last-of-type {
+      width: 50%;
+      display: inline-block;
+      float: left;
+  }
+  
+  div#how-to-btn-wrapper {
+      display: inline-block;
+      width: 50%;
+      float: left;
+  }
+  
+  li.nav-section-title.navbar__dropdown-submenu {
+      margin-left: 28px !important;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 18px 0px !important;
+  }
+  
+  ul.submenu.navbar__dropdown-submenu-items li:last-of-type {
+      border-bottom: none !important;
+  }
