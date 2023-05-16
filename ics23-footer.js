@@ -2,9 +2,117 @@
   const headerTemplate = /*html*/`
     <div id="triangle-shape" class="triangle-bottomright"></div>
     <div id="custom-header-content">
-      <img id="header-img" src="https://assets-private.eventfinity.co/materials/1756491/original/012519_ICS_WebBanners-926.png" alt="innovations">
+      <img id="header-img" src="https://assets-private.eventfinity.co/materials/2495061/original/012519_ICS_WebBanners-926.png" alt="innovations">
     </div>
   `
+
+
+
+  if (window.location.pathname.includes("schedule")) {
+    $().ready(function () {
+
+      function showAgendaItems() {
+        $(".col-12.agenda__tab-content").show(500)
+      }
+
+      function hideAgendaItems() {
+
+        $(".col-12.agenda__tab-content").hide();
+      }
+    
+      function moveChildrenToParents() {
+        for (let i = 0; i < 30; i++) {
+          $(
+            `.agenda__item-tag-mini-sym-parent-${i} .agenda__item-container`
+          ).append(
+            $(
+              `.agenda__item-tag-mini-sym-children-${i} .agenda__item-container .agenda__item-content`
+            ).clone()
+          );
+          $(`.agenda__item-tag-mini-sym-children-${i}`)
+            .closest($(".agenda__item-row"))
+            .remove();
+    
+          $(`.agenda__item-tag-mini-sym-children-${i}`);
+        }
+      }
+
+
+
+      function waitForAddedNode(params) {
+        new MutationObserver(function (mutations) {
+          var el = document.getElementsByClassName(params.id);
+          mutations.forEach((mutation) => {
+            params.done(mutation);
+          });
+          if (el.recursive == false) {
+            this.disconnect();
+            params.done("Stopped observer");
+          }
+        }).observe(params.parent || document, {
+          subtree: !!params.recursive || !params.parent,
+          childList: true,
+        });
+      }
+
+      waitForAddedNode({
+        id: "fa-spinner",
+        parent: document.querySelector(".col-12.agenda__tab-content"),
+        recursive: true,
+        done: function (el) {
+          if (el.removedNodes.length != 0) {
+            console.log(el.removedNodes[0]);
+            try {
+              if (
+                el.removedNodes[0].children[0].classList.contains("fa-spinner")
+              ) {
+                console.log(" we have a winner!", this);
+                hideAgendaItems()
+                setTimeout(() => {
+                  moveChildrenToParents()
+                }, 500)
+                setTimeout(() => {
+                  showAgendaItems();
+                }, 1000)
+
+              }
+            } catch {
+              console.log("that didn't work");
+            }
+          }
+        },
+      });
+
+      function waitForContentToLoad(element, callback) {
+        // Create a new MutationObserver instance
+        const observer = new MutationObserver((mutations) => {
+          // Look for mutations to the element's child nodes
+          mutations.forEach((mutation) => {
+            callback(mutation.removedNodes);
+          });
+        });
+        // Start watching for changes to the element
+        observer.observe(element, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+        });
+      }
+
+      /*const curElement = document.querySelector(".col-12.agenda__tab-content");
+waitForContentToLoad(curElement, (mutationRecord) => {
+  console.log(mutationRecord);
+  if (mutationRecord.type === "childList" && mutationRecord.target.className.includes("agenda__items")) {
+  
+  };
+
+  if(mutationRecord.target.className.includes("agenda__item-row") && mutationRecord.target.nextSibling == null){
+  }else if(mutationRecord.target.className.includes("agenda__items") && mutationRecord.type === 'childList'){
+  }
+});
+*/
+    });
+  }
 
   function addFullAgendaLink(targetElSelector, prepend = false) {
     $(targetElSelector)[prepend ? 'prepend' : 'append'](/*html*/`
@@ -287,6 +395,8 @@
         localStorage.setItem('ics_order_by', orderType)
         setOrder(orderType)
       })
+    
+    
     })
   }
 
@@ -301,4 +411,6 @@
   }
 
 
+  $('.agenda__filter-dropdown-content').insertBefore('.agenda__content');
 
+  
