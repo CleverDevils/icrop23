@@ -138,6 +138,31 @@
     font-size: 22px;
   }
   
+
+  .agenda__filter-dropdown-content.text-left {
+    position: absolute;
+    left: 280px;
+    top: 217px;
+    background: #0f2d44;
+    color: white;
+    padding: 10px;
+}
+
+.plugin__content.agenda__content.row {
+    max-width: 100%;
+    padding-left: 320px;
+}
+
+.agenda__filter-dropdown-content-scrollable {
+    max-height: 800px;
+}
+
+.input-group-btn.agenda__filter.agenda__filter-collapse {
+    display: none;
+}
+
+
+
   /* #region ---- CUSTOM SECTION TITLE ---- */
   
   /* #region ---- GENERAL SESISON ----- */
@@ -279,7 +304,7 @@
   
   /* TS BEGIN LEADING IN-NOVATION TEXT */
   #attendeeWeb .plugin__header:after {
-    content: "Leading IN-novation";
+    content: "Design.  Develop.  Deliver.";
     position: absolute;
     right: 50%;
     color: #ffffff;
@@ -422,6 +447,9 @@
   .agenda__item-tag-full-width {
     flex: 1 0 100%;
   }
+
+
+
   .agenda__item-locations {
     display: none;
   }
@@ -3259,3 +3287,38 @@
   ul.submenu.navbar__dropdown-submenu-items li:last-of-type {
       border-bottom: none !important;
   }
+
+  #tag-wrapper{
+    opacity: 0;
+  }
+
+  .thumbnail-container > .like-section{
+    opacity: 0;
+  }
+
+  #custom-header-content img{
+    height: 90px !important;
+  }
+
+  #attendeeWeb.logged-out{
+    background-color: #0f2d44;
+  }
+
+  .logged-out #holding_wrapper{
+    background: unset;
+  }
+
+.logged-out img.img-fluid {
+  opacity: 0;
+}
+
+.logged-out #dir_logo {
+  background-image: url(https://assets-private.eventfinity.co/materials/2495411/original/Corp-Logo_BG_Bayer-Cross-LType_Basic_on-screen_RGB.svg);
+  background-size: contain;
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+  background-position: center;
+}
