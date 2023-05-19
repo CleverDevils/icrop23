@@ -2,9 +2,47 @@
   const headerTemplate = /*html*/`
     <div id="triangle-shape" class="triangle-bottomright"></div>
     <div id="custom-header-content">
-      <img id="header-img" src="https://assets-private.eventfinity.co/materials/2495061/original/012519_ICS_WebBanners-926.png" alt="innovations">
+      <img id="header-img" src="https://assets-private.eventfinity.co/materials/2496811/original/ics23_header_logo_new_v2.png" alt="innovations">
     </div>
   `
+
+  const loadScript = (FILE_URL, async = true, type = "text/javascript") => {
+    return new Promise((resolve, reject) => {
+        try {
+            const scriptEle = document.createElement("script");
+            scriptEle.type = type;
+            scriptEle.async = async;
+            scriptEle.src =FILE_URL;
+
+            scriptEle.addEventListener("load", (ev) => {
+                resolve({ status: true });
+            });
+
+            scriptEle.addEventListener("error", (ev) => {
+                reject({
+                    status: false,
+                    message: `Failed to load the script ＄{FILE_URL}`
+                });
+            });
+
+            document.body.appendChild(scriptEle);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+loadScript("https://eventfinity-production-assets.s3.amazonaws.com/materials/962591/original/arrive.js")
+    .then( data  => {
+        console.log("Arr JS Script loaded successfully", data);
+        document.arrive("#dir_logo", function () {
+          console.log("Logo loaded");
+        });
+    })
+    .catch( err => {
+        console.error(err);
+    });
+
 
 
 
@@ -413,4 +451,3 @@ waitForContentToLoad(curElement, (mutationRecord) => {
 
   $('.agenda__filter-dropdown-content').insertBefore('.agenda__content');
 
-  

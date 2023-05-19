@@ -1,0 +1,550 @@
+<!-- Embed Livestream or Video -->
+<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+
+
+<!-- #region ---- COPY THIS INTO EVENTFINITY ----- -->
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+  
+
+<style>/*#region----- start Pages/general_session_style.css -----*/
+
+    #webNavigationTop .mckesson-general-session-header-logo {
+      height: 71px;
+      width: 351px;
+      background-image: url(https://eventfinity-production-assets.s3.amazonaws.com/materials/973821/original/on-demand-navbar-logoAsset-1.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      margin: 15px 15px 0 15px;
+    }
+  
+    #content-block #content {
+      background-image: url(https://eventfinity-production-assets.s3.amazonaws.com/materials/970371/original/Gen-Session-Pg-Bkgrnd_FIN2.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      max-width: 100%;
+      height: 100vh;
+    }
+  
+    .contentBackground,
+    .contentBackground > *,
+    .material-container.contentBackground,
+    div#material-1018861,
+    .contentBackground.tab-content.col-xs-12.single-library {
+      background-color: unset;
+    }
+  
+    .logged-in.web-homescreen.nav-top #body-content {
+      margin-top: unset;
+      height: unset;
+    }
+  
+    #body-content.general-session-body-content #homescreen_content {
+      margin-top: 100px;
+      height: calc(100vh - 100px);
+    }
+  
+    #body-content.general-session-body-content div[id*='library-'] {
+      overflow: auto;
+    }
+  
+    #body-content.general-session-body-content
+      div[id*='library-']
+      > div.row.webaccess-section-title.text-left.themePrimaryColorBackground.themeSecondaryColor.single-library-header
+      > span {
+      margin: auto;
+      font-size: 35px;
+      text-transform: uppercase;
+      margin: 0 auto;
+    }
+  
+    #body-content.general-session-body-content .single-library {
+      height: calc(100vh - 175px);
+      max-width: 90vw;
+      margin: 0 auto;
+    }
+  
+    #body-content.general-session-body-content div[id*='material'],
+    #body-content.general-session-body-content .material-container {
+      padding: 0;
+      min-height: 0;
+      height: 100%;
+    }
+  
+    /*.#region --  */
+  
+    .TestLiveStreamAndSlido.row {
+      margin-top: 20px;
+    }
+  
+    .TestStreamDesc {
+      margin-left: 15px;
+    }
+  
+    .TestStreamDesc h4 {
+      color: #fff;
+    }
+  
+    .TestStreamWrapper {
+      width: 80%;
+    }
+  
+    .TestStreamVideoPlayer {
+      margin-bottom: 30px;
+    }
+  
+    .TestSlidoFrame iframe {
+      width: 100%;
+    }
+  
+    .TestStreamContainer {
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .tech-support-bubble {
+      background-color: #fff;
+      border: solid 1px #000;
+      border-radius: 10px;
+      padding: 20px;
+      width: 100%;
+    }
+  
+    #StreamFooterImg {
+      width: 100%;
+      height: auto;
+    }
+  
+    @media (min-width: 992px) {
+      .TestStreamVideoPlayer {
+        margin-bottom: 0px;
+      }
+      .TestSlidoFrame iframe {
+        width: 100%;
+      }
+    }
+  
+    @media (max-width: 991px) {
+      .TestStreamWrapper {
+        margin-bottom: 50px;
+      }
+    }
+    .TestSlidoFrame.slido-disabled {
+        display: none;
+    }
+
+
+/*#endregion------- end Pages/general_session_style.css ------*/
+
+</style>
+
+<div class="TestStreamContainer row" id="plenary-page" :class="[slido_enabled ? 'slido-enabled' : 'slido-disabled' ]">
+    <div class="TestStreamWrapper col-12">
+      <div class="TestTopWrapper">
+        <div class="TestStreamDesc"></div>
+        <!-- The Stream / SLido row -->
+        <div class="TestLiveStreamAndSlido row">
+          <div class="TestStreamVideoPlayer col-lg-9">
+            <div is="video-sources" :vimeo_url="video_source" v-show="source_type === 'video'"></div>
+            <div is="image-sources" :image_url="image_source" v-show="source_type === 'gfx'"></div>
+          </div>
+          <!-- QA Block -->
+          <div class="TestSlidoFrame col-lg-3" v-if="slidoUrlComputed" :class="[slido_enabled ? 'slido-enabled' : 'slido-disabled' ]">
+            <iframe :src="slidoUrlComputed" height="100%" width="100%" frameborder="0" style="min-height: 560px" title="Slido"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="ISC-Chat"></div>
+    
+
+<script>
+   $(window).on('resize', function()
+    {
+        SetSlidoHeight()
+    });
+
+
+    $(document).ready(function()
+    {
+        setTimeout(
+            function()
+            {
+                SetSlidoHeight()
+                CloneChat() 
+            }, 3500);
+    });
+
+
+    setInterval(SetSlidoHeight, 10000);
+
+
+    function SetSlidoHeight()
+    {
+        if ($(window).width() > 1000) {
+             var VideoSize = $('.TestStreamVideoPlayer div iframe').height();
+            if (VideoSize == null || VideoSize == undefined || VideoSize == "")
+            {
+                var VideoSize = $('.TestStreamVideoPlayer div img').height();
+            }
+            $('.TestSlidoFrame > iframe').css('min-height', VideoSize);
+        }
+    }
+
+
+   function CloneChat() 
+   {
+        var GlobalChat = $('.global-chat');
+         $('.ISC-Chat').append(GlobalChat );
+    }
+
+
+</script>
+
+    <script>
+
+        
+        const gs_config = {
+        apiKey: 'AIzaSyB_UfOy9uRdArhuIq4DaqFhWeX-pgSJHP8',
+        authDomain: 'cgcaci21.firebaseapp.com',
+        databaseURL: 'https://icropbayer31df3-e8221.firebaseio.com',
+        projectId: 'cgcaci21',
+        storageBucket: 'cgcaci21.appspot.com',
+        messagingSenderId: '595065889262',
+        appId: '1:595065889262:web:90fac884b0452a89b56eff',
+        measurementId: 'G-M0K5LQT39Q',
+        };
+        const gs_app = firebase.initializeApp(gs_config, 'gs_app'); 
+        const gs_database = firebase.database(gs_app);
+        const reactions_database = gs_database;
+        var USER_EMAIL = `[[email]]`;
+        window.attendee_email = USER_EMAIL
+    </script>
+    <script>
+        let userID = "[event_attendee_id]"
+
+        // * THESE TWO WILL OVERRIDE FIREBASE IN A CATASTROPHIC FIREBASE ISSUE
+        const PRIMARY_STREAM_URL = ""; 
+        const BACKUP_STREAM_URL = "";
+
+
+        </script>
+
+        
+
+        <!-- <script src="video_switcher_gs.js"></script> -->
+
+        <!-- todo -- paste in the switcher file from your event! -->
+        
+        <!-- #endregion ---- COPY THIS INTO EVENTFINITY ----- -->
+        
+        
+       <!-- <script id="switcher-gs-js" src="https://assets-private.eventfinity.co/materials/1761291/original/switcher-temp.js"></script>-->
+
+
+<!-- Custom content -->
+
+<script>
+    $(".plugin__title").text("General Session").addClass("show");
+    
+    if (
+      window.location.origin.includes("localhost") ||
+      window.location.origin.includes("127.0.0.1")
+    ) {
+      console.log("---- EMULATOR -----");
+      gs_database.useEmulator("localhost", 9008);
+      userID = "12341253123";
+      USER_EMAIL = "tim@tim.com";
+      $("#plenary-page").wrap("<main>");
+    }
+    
+    const videoSources = Vue.component("video-sources", {
+      props: {
+        vimeo_url: {
+          type: String,
+        },
+      },
+      template: `
+        <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe id="stage-video" :src="vimeo_url" allow="autoplay; fullscreen" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0">
+            </iframe>
+        </div>
+        `,
+    });
+    
+    const room_id =
+      window.location.pathname.split("/").slice(-1)[0].replace(/[.]/g, "_") +
+      window.location.hash.replace("#", "");
+    const imageSources = Vue.component("image-sources", {
+      props: {
+        image_url: {
+          type: String,
+        },
+      },
+      template: `
+      <div style="padding:56.25% 0 0 0;position:relative;">
+        <img :src="image_url" style="position:absolute;top:0;left:0;width:100%;height:100%;" alt="">
+      </div>
+    `,
+    });
+    if (typeof reactions_plugin != "undefined") {
+      Vue.use(reactions_plugin, {
+        reactions_database,
+        room_id,
+        event_attendee_id: userID,
+      });
+    }
+    const switcher = new Vue({
+      el: "#plenary-page",
+      components: {
+        videoSources,
+        imageSources,
+      },
+      data: {
+        firebase_override_mode: null,
+        selectedSrc: "video",
+        sourceIDX: 0,
+        userID,
+        primary_backup_state_ref: "",
+        primary_backup_state: 0,
+        source_type_ref: "",
+        source_type: "",
+        slido_state_ref: "",
+        slido_url: "",
+        primary_video_url: "",
+        backup_video_url: "",
+        enable_switchers: true,
+        activeGfxObj: {
+          url: "",
+        },
+        slido_enabled: true,
+        slido_url_ref: "",
+        room_id: "",
+        image_source_ref: "",
+        image_source: "",
+        background_image_source: "",
+        background_image_source_ref: "",
+      },
+      methods: {
+        add_listener(db_ref, key, default_val) {
+          let self = this;
+          db_ref.on("value", function (snapshot) {
+            let val = snapshot.val();
+            if (val != null) {
+              self[key] = val;
+            } else {
+              self[key] = default_val;
+            }
+          });
+        },
+        setup_firebase_presence(_user_data, _meeting_info) {
+          // since I can connect from multiple devices or browser tabs, we store each connection instance separately
+          // any time that connectionsRef's value is null (i.e. has no children) I am offline
+          var presenceRef = gs_database.ref("presence_data");
+          var location = window.location.href;
+    
+          const data_schema = {
+            email: USER_EMAIL ? USER_EMAIL : "unknown",
+            start_time: firebase.database.ServerValue.TIMESTAMP,
+            url: location,
+          };
+          let con = presenceRef.push();
+          con.onDisconnect().update({
+            end_time: firebase.database.ServerValue.TIMESTAMP,
+          });
+          con.set(
+            {
+              email: data_schema.email || "",
+              start_time: data_schema.start_time,
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+        },
+      },
+      computed: {
+        primary_backup_video_computed: function () {
+          return this.videoSources[this.primary_backup_state];
+        },
+        video_source: function () {
+          if (this.firebase_override_mode == null) {
+            if (this.primary_backup_state == 0) {
+              return this.primary_video_url;
+            } else {
+              return this.backup_video_url;
+            }
+          } else {
+            if (this.firebase_override_mode === 0) {
+              return this.primary_video_url;
+            } else if (this.firebase_override_mode === 1) {
+              return this.backup_video_url;
+            }
+          }
+        },
+        slidoUrlComputed() {
+          const firstName = window.currentEventAttendee.attendee_fields.first_name;
+          const lastName = window.currentEventAttendee.attendee_fields.last_name;
+    
+          const email = window.attendee_email || "";
+    
+          let slidoUrl = this.slido_url;
+    
+          if (!slidoUrl) {
+            return "";
+          }
+          if (slidoUrl.includes("?")) {
+            slidoUrl += "&";
+          } else {
+            slidoUrl += "?";
+          }
+          slidoUrl += "user_name=" + firstName + " " + lastName;
+          slidoUrl += "&user_company=" + email;
+          return slidoUrl;
+        },
+      },
+      mounted() {
+        this.room_id = room_id;
+    
+        this.primary_video_ref = gs_database.ref(
+          `settings/${this.room_id}/primary_video_url`
+        );
+        this.backup_video_ref = gs_database.ref(
+          `settings/${this.room_id}/backup_video_url`
+        );
+    
+        if (typeof PRIMARY_STREAM_URL == undefined) {
+          console.error(
+            "PRIMARY_STREAM_URL was not found. This must be defined, even if you aren't using it!!"
+          );
+        } else {
+          try {
+            if (PRIMARY_STREAM_URL == "" || PRIMARY_STREAM_URL == null) {
+              this.add_listener(this.primary_video_ref, "primary_video_url", "");
+            } else {
+              this.firebase_override_mode = 0;
+              this.primary_video_url = PRIMARY_STREAM_URL;
+              this.source_type = "video";
+            }
+          } catch (error) {
+            console.error(
+              error,
+              "\nMake sure to define the variable, even if you arent using it"
+            );
+          }
+        }
+        if (typeof BACKUP_STREAM_URL == undefined) {
+          console.error(
+            "BACKUP_STREAM_URL was not found. This must be defined, even if you aren't using it!!"
+          );
+        } else {
+          try {
+            if (BACKUP_STREAM_URL == "" || BACKUP_STREAM_URL == null) {
+              this.add_listener(this.backup_video_ref, "backup_video_url", "");
+            } else {
+              this.firebase_override_mode = 1;
+              this.backup_video_url = BACKUP_STREAM_URL;
+              this.source_type = "video";
+            }
+          } catch (error) {
+            console.error(
+              error,
+              "\nMake sure to define the variable, even if you arent using it"
+            );
+          }
+        }
+        if (this.firebase_override_mode == null) {
+          this.slido_state_ref = gs_database.ref(
+            `settings/${this.room_id}/slido_state`
+          );
+          this.primary_backup_state_ref = gs_database.ref(
+            `settings/${this.room_id}/primary_backup_state`
+          );
+          this.source_type_ref = gs_database.ref(
+            `settings/${this.room_id}/source_type`
+          );
+          this.slido_url_ref = gs_database.ref(
+            `settings/${this.room_id}/slido_url`
+          );
+          this.image_source_ref = gs_database.ref(
+            `settings/${this.room_id}/image_source`
+          );
+          this.background_image_source_ref = gs_database.ref(
+            `settings/${this.room_id}/background_image_source`
+          );
+    
+          // this.add_listener(this.ccRef, "sourceIDX", 0);
+          this.add_listener(
+            this.primary_backup_state_ref,
+            "primary_backup_state",
+            0
+          );
+          this.add_listener(this.source_type_ref, "source_type", "video");
+          this.add_listener(this.slido_state_ref, "slido_enabled", true);
+          this.add_listener(this.slido_url_ref, "slido_url", "");
+          this.add_listener(this.image_source_ref, "image_source", "");
+          this.add_listener(
+            this.background_image_source_ref,
+            "background_image_source",
+            ""
+          );
+        }
+    
+        try {
+          this.setup_firebase_presence();
+        } catch (error) {
+          console.error("Error setting up presence", error);
+        }
+      },
+      watch: {
+        background_image_source: {
+          handler(newValue, oldValue) {
+            // if (newValue != oldValue) {
+            //   console.log("in watcher", newValue);
+            // }
+            if ($("#bg-img-holder").length == 0) {
+              $("main").prepend(
+                `<div id='bg-img-holder' style='display: none; width: 100%; height: 100vh; background-color: #000; position:absolute; left:0; top:0;background-size: cover;'></div>`
+              );
+            }
+            if (
+              !newValue &&
+              $("#bg-img-holder").css("background-image") != "none"
+            ) {
+              $("#bg-img-holder").fadeOut(1000, () => {
+                $("#bg-img-holder").css("background-image", "");
+              });
+            }
+            if (newValue && $("#bg-img-holder").css("background-image") == "none") {
+              $("#bg-img-holder").css("background-image", `url(${newValue})`);
+              $("#bg-img-holder").fadeIn();
+            } else if (
+              newValue &&
+              $("#bg-img-holder").css("background-image") != "none"
+            ) {
+              $("#bg-img-holder").fadeOut(1000, () => {
+                $("#bg-img-holder").css("background-image", `url(${newValue})`);
+                $("#bg-img-holder").fadeIn();
+              });
+            }
+          },
+          immediate: true,
+        },
+      },
+    });
+    
+    </script>

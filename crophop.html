@@ -1,0 +1,245 @@
+<!--#region --- copy and paste into EF  -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.js"></script>
+
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.11.1/lodash.min.js"></script>
+
+<script>
+
+const vod_user_data_manager = {
+  validateEFData(field_name, val, type = 'boolean', targetVal) {
+    let trimmedVal = val.trim();
+    if (trimmedVal !== '[[' + field_name + ']]') {
+      if (type === 'boolean')
+        if (trimmedVal === 'true' || parseInt(trimmedVal) === 1) {
+          return true;
+        } else {
+          return false;
+        }
+      else if (type === 'string') {
+        return trimmedVal;
+      } else if (type === 'is_not_blank') {
+        return (
+          trimmedVal != '' && trimmedVal != 'false' && trimmedVal != 'no'
+        );
+      } else if (type === 'equal_to') {
+        if (targetVal == null) throw 'No target passed to check';
+        return trimmedVal.toLowerCase() == targetVal;
+      }
+    } else {
+      if (type == "string"){
+        return ""
+      }
+      else {
+        return false;
+      }
+    }
+  },
+};
+
+const vod_user_data = {
+  email: vod_user_data_manager.validateEFData('email', `[[email]]`, 'string'),
+  event_attendee_id: vod_user_data_manager.validateEFData(
+    'event_attendee_id',
+    `[[event_attendee_id]]`,
+    'string'
+  ),
+  first_name: vod_user_data_manager.validateEFData(
+    'first_name',
+    `[[first_name]]`,
+    'string'
+  ),
+  last_name: vod_user_data_manager.validateEFData(
+    'last_name',
+    `[[last_name]]`,
+    'string'
+  ),
+  username: `[[first_name]] [[last_name]]`,
+  user_type: vod_user_data_manager.validateEFData(
+    'user_type',
+    `admin`,
+    'string'
+  ),
+};
+
+</script>
+
+
+
+<style>
+.vod-footer-text {
+  color: #000;
+  text-align: center;
+}
+/********** On Demand Page **********/
+.logged-in.web-homescreen.nav-top
+.on-demand-body-content
+.webaccess-section-title {
+display: none !important;
+}
+.logged-in.web-homescreen.nav-top #body-content.on-demand-body-content {
+background: linear-gradient(
+    160deg,
+    rgba(1, 55, 85, 1) 10%,
+    rgba(211, 212, 225, 0.3) 58%
+  ),
+  linear-gradient(
+    200deg,
+    rgba(4, 91, 139, 1) 10%,
+    rgba(211, 212, 225, 0.3) 58%
+  );
+margin-top: unset;
+height: 100vh;
+}
+.on-demand-body-content #content-block {
+background-color: unset;
+}
+.on-demand-body-content #content-block #content {
+background-image: url(https://eventfinity-production-assets.s3.amazonaws.com/materials/970441/original/On-Demand-Pg-Bkgrnd_FIN.png);
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center top;
+max-width: 100%;
+height: 100%;
+}
+#body-content.on-demand-body-content #homescreen_content * {
+background-color: unset;
+}
+#material-973781,
+#material-973781 .material-container {
+height: 100vh;
+min-height: unset;
+}
+#body-content.on-demand-body-content #app {
+background-color: transparent;
+}
+#body-content.on-demand-body-content .sessions-container {
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-around;
+align-items: flex-start;
+max-width: 1120px;
+margin: 0 auto;
+}
+#body-content.on-demand-body-content .session-container {
+background-color: white !important;
+margin-bottom: 35px;
+min-width: 250px;
+max-width: 250px;
+}
+
+#body-content.on-demand-body-content .sessions-container .vod-category-header {
+margin: 0 auto !important;
+}
+
+#body-content.on-demand-body-content
+.sessions-container
+.vod-category-header
+.vod-header-text {
+color: white !important;
+font-family: Arial, serif;
+}
+
+#body-content.on-demand-body-content .vod-category {
+width: 100%;
+display: flex;
+flex-flow: row wrap;
+justify-content: space-around;
+}
+
+#body-content.on-demand-body-content .session-title,
+#body-content.on-demand-body-content .session-description {
+font-family: Arial, serif;
+color: #003654;
+padding: 0 10px;
+}
+#body-content.on-demand-body-content .session-title {
+font-size: 24px;
+text-transform: capitalize;
+}
+#body-content.on-demand-body-content .session-description {
+font-size: 19px;
+line-height: 25px;
+}
+#body-content.on-demand-body-content .thumbnail-container {
+height: 141px !important;
+width: 250px;
+/* clip-path: polygon(0% 0%, 0% 87%, 50% 100%, 100% 87%, 100% 0%); */
+background-position: center;
+background-size: cover;
+}
+#body-content.on-demand-body-content .resources-section {
+justify-content: space-around;
+}
+#body-content.on-demand-body-content .resource-item {
+margin: 5px;
+}
+#body-content.on-demand-body-content .resource-link {
+text-decoration-line: underline;
+color: #002e46;
+border: none;
+}
+
+@media (min-width: 500px) {
+#body-content.on-demand-body-content .session-container {
+  margin: 0 15px 35px 15px;
+}
+}
+/*@media (min-width: 897px) {*/
+#body-content.on-demand-body-content #homescreen_content {
+height: 100vh !important;
+/* margin-top: 175px !important; */
+overflow: auto;
+/*-webkit-mask-image: linear-gradient(0deg, black 80%, transparent);*/
+}
+#body-content.on-demand-body-content #homescreen_content * {
+height: unset;
+}
+#body-content.on-demand-body-content #homescreen_content .homescreen-content {
+/*padding-top: 100px;*/
+}
+
+.routerFade-enter-active, .routerFade-leave-active {
+    transition: opacity .2s
+}
+.routerFade-enter, .routerFade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
+}
+
+#body-content.on-demand-body-content #video-player-component {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.embed-responsive-item {
+    height: 100% !important;
+}
+
+</style>
+
+
+<div id="video-on-demand"></div>
+<script>
+  const vod_firebase_config = {
+    apiKey: 'AIzaSyB_UfOy9uRdArhuIq4DaqFhWeX-pgSJHP8',
+    authDomain: 'cgcaci21.firebaseapp.com',
+    databaseURL: 'https://timtest-932kd.firebaseio.com/',
+    projectId: 'cgcaci21',
+    storageBucket: 'cgcaci21.appspot.com',
+    messagingSenderId: '595065889262',
+    appId: '1:595065889262:web:90fac884b0452a89b56eff',
+    measurementId: 'G-M0K5LQT39Q',
+  };
+</script>
+
+<script id="fb-script" src="https://firebasestorage.googleapis.com/v0/b/cgcaci21.appspot.com/o/video_on_demand%2Fvideo_on_demand.js?alt=media&token=41814f52-ffb9-4cfa-bd68-28e525e9dcd1"></script>
+
+<!--#endregion -- end copy paste into EF  -->

@@ -1,0 +1,226 @@
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script> -->
+<!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-firestore.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-functions.js"></script> -->
+<script src="https://unpkg.com/portal-vue@2.1.7/dist/portal-vue.umd.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+<script src="https://unpkg.com/vue-router@3.4.9/dist/vue-router.js"></script>
+
+
+<link id="switcher-style" rel="stylesheet" href="https://firebasestorage.googleapis.com/v0/b/cgcaci21.appspot.com/o/video-switcher%2Fswitcher_ui_style_1.0.css?alt=media&token=55d95482-b3b0-42d4-8da0-d6e5a71efde5">
+<style class="darkreader darkreader--cors" media="screen">
+	#switch_panel {
+		text-align: center; margin: 0 auto; display: flex; justify-content: center;
+	}
+	
+	.card.media-bin-card.p-2.m-2 {
+		width: 18em;
+	}
+	
+	.toast {
+		opacity: 1;
+	}
+	
+	.placeholder-image-input-group .input-group-append {
+		max-height: 2.6em;
+	}
+	
+	.control-section.disabled,
+	.control-section.disabled .custom-switch .custom-control-label::before {
+		pointer-events: none;
+	}
+	
+	[v-cloak]>* {
+		display: none;
+	}
+	
+	[v-cloak]::before {
+		content: "loading...";
+	}
+	
+	.control-section.disabled #slido-switch-form-group {
+		opacity: .5; transition: opacity .3s
+	}
+	
+	#loading-switcher {
+		position: absolute; left: 50%; transform: translateX(-50%); top: 5em;
+	}
+	
+	.card.media-bin-card.active.shadow {
+		box-shadow: 0 .5rem 1rem rgba(81, 227, 19, 0.619) !important; border: 1px solid lime;
+	}
+	
+	.media-bin-edit-button {
+		opacity: 0; transition: opacity .1s; position: absolute; top: 1em; right: 1em;
+	}
+	
+	#media-bin-container {
+		justify-content: center;
+	}
+	
+	.media-bin-card:hover .media-bin-edit-button {
+		opacity: 1;
+	}
+	
+	#media-bin-view {
+		width: 100%;
+	}
+	
+	.component-fade-enter-active,
+	.component-fade-leave-active {
+		transition: opacity .3s ease;
+	}
+	
+	.component-fade-enter,
+	.component-fade-leave-to {
+		opacity: 0;
+	}
+	
+	.dynamic-component-media-bin {
+		position: absolute; top: 10em; left: 50%; transform: translateX(-50%); width: 100%;
+	}
+	
+	#media-bin-view-top-section {
+		height: 10em;
+	}
+	
+	#media-bin-delete-button {
+		right: 0;
+	}
+	
+	.media-bin-alert.position-fixed {
+		position: fixed !important; bottom: 0; left: 50%; transform: translateX(-50%);
+	}
+	
+	.reactions-table .form-control[readonly] {
+		color: #fff !important; border: none !important; background-color: transparent !important; display: block; font-family: inherit; font-size: inherit; padding: none; width: auto !important;
+	}
+	
+	#live-now-preview {
+		background-color: #ca0505; color: #fff; padding: .5em; font-weight: bold; border-radius: .7em;
+	}
+	
+	.switcher-ui-title *,
+	.admin-panel-title,
+	.switcher-form-component,
+	.switcher-input-text,
+	.switcher-input-display a.not-collapsed,
+	.image-holder a.not-collapsed,
+	.control-section * {
+		color: #000 !important;
+	}
+	
+	button#media-bin-submit-button {
+		background-color: #000;
+	}
+	
+	button.btn.mr-5.btn-primary {
+		color: #000; font-weight: 400;
+	}
+	
+	a.switcher-list-item.list-group-item.list-group-item-action {
+		color: #000;
+	}
+	
+	#switch_panel .card-header {
+		color: #000;
+	}
+	
+	#switch_panel span {
+		color: #000; font-weight: 400;
+	}
+	
+	#switch_panel label.btn.btn-outline-primary {
+		background-color: #626262 !important;
+	}
+	
+	#switch_panel label.btn.btn-outline-primary.active {
+		background-color: #e00000 !important;
+	}
+	
+	#switch_panel label.btn.btn-outline-primary span {
+		color: #fff;
+	}
+	
+	#switch_panel .switcher-input-display button.btn.btn-primary * {
+		color: #fff !important;
+	}
+	
+	#switch_panel a.collapsed {
+		color: #000;
+	}
+	
+	.switcher-form button.btn.btn-secondary {
+		background-color: #000;
+	}
+	
+	.switcher-form button.btn.btn-warning {
+		background-color: orange;
+	}
+	
+	.switcher-form button.btn.btn-danger {
+		background-color: red;
+	}
+	
+	.col-12.tab-content {
+		margin-left: auto; margin-right: auto; max-width: 1200px;
+	}
+
+</style>
+
+<div id="switch_panel">
+
+</div>
+<script>
+	const gs_config = {
+		apiKey: 'AIzaSyB_UfOy9uRdArhuIq4DaqFhWeX-pgSJHP8',
+		authDomain: 'cgcaci21.firebaseapp.com',
+		databaseURL: 'https://icropbayer31df3-e8221.firebaseio.com/',
+		projectId: 'cgcaci21',
+		storageBucket: 'cgcaci21.appspot.com',
+		messagingSenderId: '595065889262',
+		appId: '1:595065889262:web:90fac884b0452a89b56eff',
+		measurementId: 'G-M0K5LQT39Q',
+	};
+
+
+	const sessions = {
+		6570:
+		{
+			title: "General Session - Main",
+			type: 'main-stage'
+		},
+		6571:
+		{
+			title: "General Session - Development",
+			type: 'library'
+		},
+		'Library_Page_Template.html':
+		{
+			title: "Test Page",
+			type: 'library'
+		}
+	}
+
+</script>
+
+<script id="ui-script" src="https://firebasestorage.googleapis.com/v0/b/cgcaci21.appspot.com/o/video-switcher%2Fvideo_switcher_ui_1.0.js?alt=media&token=64ca49ff-1eff-402f-b2a4-2e885f35b4ef"></script>
+
+<style>
+	.routerFade-enter-active,
+	.routerFade-leave-active {
+		transition: opacity .2s
+	}
+	
+	.routerFade-enter,
+	.routerFade-leave-to
+	/* .fade-leave-active in <2.1.8 */
+	
+	{
+		opacity: 0
+	}
+
+</style>
+<style class="darkreader darkreader--sync" media="screen"></style>

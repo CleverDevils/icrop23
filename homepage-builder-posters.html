@@ -1,0 +1,195 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+
+<!-- #region -- copy and paste below -->
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-database.js"></script>
+<style>
+	.single-poster-header .header-text {
+		font-size: 42px; font-weight: bold; display: inline-block; margin-top: .3em;
+	}
+	
+	.poster-read-more {
+		padding: .3em 1em; display: inline-block; font-style: italic; text-transform: uppercase;
+	}
+	
+	.header-icon {
+		position: absolute; right: 0; top: 15px; right: 15px;
+	}
+	
+	.single-poster-header,
+	.poster-read-more,
+	.single-poster-body {
+		color: #fff; color: #fff;
+	}
+	
+	.single-poster {
+		width: 100%; margin-bottom: 1.8em; position: relative;
+	}
+	
+	.single-poster-header {
+		margin-bottom: .2em;
+	}
+	
+	.single-poster-body {
+		font-size: 18px; font-weight: 700;
+	}
+	
+	.poster-inner {
+		padding: .2em 1em 2em 2em; background-color: #0000005c;
+	}
+
+</style>
+
+<div id="posters-vm">
+	<div id="posters-section">
+		<div id="featured-title-header">
+			People&#39;s Choice Posters
+		</div>
+		<div id="featured-posters-body">
+			<div :key="index" :style="{
+        backgroundImage: 'url(' + genericImages[index] + ')'}" class="single-poster" v-for="(poster,index) in posters">
+				<div class="poster-inner">
+					<div class="single-poster-header">
+						<div class="header-text">P{{poster.poster_number}}:</div>
+						<!-- <span class="header-icon"><i class="fal fa-file-alt"></i></span> -->
+					</div>
+					<div class="single-poster-body">
+						{{poster.title}}
+					</div>
+					<div class="single-poster-footer read-more-wrapper">
+						<a :href="'/libraries/617908#/player?id=' + poster.id" class="single-poster-a read-more-a">
+							<div class="poster-read-more read-more-text">Read More
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<script>
+	const databaseURL = "https://timtest-932kd.firebaseio.com"
+	const relPathToPosterVideos = "/vod_libraries/videos/617908"
+	const relPathToCrophop = "/vod_libraries/videos/617888"
+	const relPathToImages = "/vod_libraries/generic_images"
+	const pathToVideos = databaseURL + relPathToPosterVideos
+	const pathToCrophop = databaseURL + relPathToCrophop
+	const pathToImages = databaseURL + relPathToImages
+
+	const gs_config = {
+		apiKey: 'AIzaSyB_UfOy9uRdArhuIq4DaqFhWeX-pgSJHP8',
+		authDomain: 'cgcaci21.firebaseapp.com',
+		databaseURL: databaseURL,
+		projectId: 'cgcaci21',
+		storageBucket: 'cgcaci21.appspot.com',
+		messagingSenderId: '595065889262',
+		appId: '1:595065889262:web:90fac884b0452a89b56eff',
+		measurementId: 'G-M0K5LQT39Q',
+	};
+
+	function getUniqueRandomNumbers(count, rangeMin, rangeMax)
+	{
+		// https://stackoverflow.com/questions/2380019/generate-unique-random-numbers-between-1-and-100
+		if (!count)
+		{
+			return []
+		}
+		var arr = [];
+		while (arr.length < Math.min(count, rangeMax))
+		{
+			var r = Math.floor(Math.random() * rangeMax);
+			if (arr.indexOf(r) === -1) arr.push(r);
+		}
+		return arr
+
+	}
+
+	const hpApp = firebase.initializeApp(gs_config)
+	const database = firebase.database()
+
+	const hpVm = new Vue(
+	{
+		el: "#posters-vm",
+		data:
+		{
+			posters: [
+			{},
+			{},
+			{}],
+			genericImages: []
+		},
+		methods:
+		{
+			getPosterStyle(poster)
+			{
+				return {
+					'backgroundImage': `url(https://picsum.photos/1024/400/?image=12")`
+				}
+			}
+		},
+		async mounted()
+		{
+			let self = this
+
+			// #region -----  PUT WINNING IDS HERE --------
+			const winners = [
+				'606_todd_ciche',
+				'646_ying_li',
+				'450_jayachandra_n'
+			]
+
+			// #endregion ------ PUT WINNING IDS ABOVE
+
+
+			// * 
+			const imgResponse = await axios.get(pathToImages + "/.json",
+			{
+				params:
+				{
+					shallow: true
+				}
+			})
+			const imgKeys = Object.keys(imgResponse.data)
+
+			const numImages = imgResponse.data ? imgKeys.length : 0
+			const uniqueImgNumbers = getUniqueRandomNumbers(3, 0, numImages)
+
+			// SETUP LISTENERS TO THE WINNING POSTERS
+			const listeners = winners.map((item, index) =>
+			{
+				return database.ref(relPathToPosterVideos).child(item).on('value', (snap) =>
+				{
+					if (snap && snap.exists())
+					{
+						self.posters.splice(index, 1, snap.val())
+					}
+				})
+			})
+
+			const imgPromises = await Promise.all(uniqueImgNumbers.map(item =>
+			{
+				const k = imgKeys[item]
+				return database.ref(relPathToImages).child(k).once('value')
+			}))
+
+
+			this.genericImages = imgPromises.map((item) =>
+			{
+				console.log(item.val())
+				try
+				{
+					return item.val().url || ""
+				}
+				catch (err)
+				{
+					return ""
+				}
+			})
+		}
+	})
+
+</script>
